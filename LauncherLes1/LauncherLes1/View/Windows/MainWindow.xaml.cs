@@ -1,5 +1,6 @@
 ﻿using CheckConnectInternet;
 using LauncherLes1.View.Pages;
+using LauncherLes1.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,27 +15,32 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace LauncherLes1.View
 {
     public partial class MainWindow : Window
     {
-        public static bool isActiveErrorConnectInternetPage { get; set; } = false;
+        public static bool isActiveerrorConnectInternetWindow { get; set; } = false;
+
+        Window ConfirmUpdate;
 
         public MainWindow()
         {
             InitializeComponent();
             CheckConnectInternet();
+            AutoUpdateLauncher();
+            Cmd($"taskkill");
         }
 
         private void CheckConnectInternet()
         {
-            if (isActiveErrorConnectInternetPage == false) {
+            if (isActiveerrorConnectInternetWindow == false) {
                 if (Internet.connect() ==  false)
                 {
                     this.Hide();
-                    ErrorConnectInternetPage errorConnectInternetPage = new ErrorConnectInternetPage();
-                    errorConnectInternetPage.Show();
+                    ErrorConnectInternetWindow errorConnectInternetWindow = new ErrorConnectInternetWindow();
+                    errorConnectInternetWindow.Show();
                 }
             }
         }
@@ -56,5 +62,30 @@ namespace LauncherLes1.View
         {
             Process.Start(new ProcessStartInfo("https://discord.gg/efEFJfEcXH") { UseShellExecute = true });
         }
+
+        public void Cmd(string line)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = $"/c {line}",
+                WindowStyle = ProcessWindowStyle.Hidden,
+            });
+        }
+
+        #region AutoUpdateLauncher
+        private void AutoUpdateLauncher()
+        {
+            if (LauncherLes1.Properties.Settings.Default.isAutoUpdateLauncher == true)
+            {
+                if (SettingsPage.isActiveUpdateLauncherWindow == false)
+                {
+                    ConfirmUpdate = new ConfirmUpdateWindow();
+                    SettingsPage.isActiveUpdateLauncherWindow = true;
+                    ConfirmUpdate.Show();
+                }
+            }
+        }
+        #endregion
     }
 }

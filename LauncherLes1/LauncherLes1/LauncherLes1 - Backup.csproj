@@ -13,7 +13,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>LogoProject.ico</ApplicationIcon>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
     <Version>1.0.0-alpha</Version>
     <FileVersion>1.0.0.0</FileVersion>
     <AssemblyVersion></AssemblyVersion>
@@ -22,7 +22,7 @@
     <NeutralLanguage>ru</NeutralLanguage>
     <PackAsTool>False</PackAsTool>
     <AssemblyName>LauncherRemer</AssemblyName>
-    <UseWindowsForms>False</UseWindowsForms>
+    <UseWindowsForms>True</UseWindowsForms>
     <PackageId>LauncherRedmer</PackageId>
     <Authors>Michael Yakovlev</Authors>
     <Company>Redmer</Company>
@@ -70,85 +70,35 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
-    <PackageReference Include="Costura.Fody">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Fody">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" />
     <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="Microsoft.NETCore.Platforms" />
     <PackageReference Include="Microsoft.NETCore.Targets" />
-    <PackageReference Include="Microsoft.Win32.Primitives" />
     <PackageReference Include="MvvmCross" />
-    <PackageReference Include="NETStandard.Library" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="Newtonsoft.Json.Bson" />
-    <PackageReference Include="runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl" />
     <PackageReference Include="runtime.native.System" />
     <PackageReference Include="runtime.native.System.IO.Compression" />
-    <PackageReference Include="runtime.native.System.Net.Http" />
-    <PackageReference Include="runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl" />
-    <PackageReference Include="runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl" />
-    <PackageReference Include="runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl" />
     <PackageReference Include="SharpVectors" />
     <PackageReference Include="System.Buffers" />
     <PackageReference Include="System.Collections" />
-    <PackageReference Include="System.Collections.Concurrent" />
     <PackageReference Include="System.Data.DataSetExtensions" />
     <PackageReference Include="System.Diagnostics.Debug" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" />
-    <PackageReference Include="System.Diagnostics.Tools" />
-    <PackageReference Include="System.Diagnostics.Tracing" />
-    <PackageReference Include="System.Formats.Asn1" />
     <PackageReference Include="System.Globalization" />
-    <PackageReference Include="System.Globalization.Calendars" />
-    <PackageReference Include="System.Globalization.Extensions" />
     <PackageReference Include="System.IO" />
     <PackageReference Include="System.IO.Compression" />
     <PackageReference Include="System.IO.Compression.ZipFile" />
     <PackageReference Include="System.IO.FileSystem" />
     <PackageReference Include="System.IO.FileSystem.Primitives" />
-    <PackageReference Include="System.Linq" />
-    <PackageReference Include="System.Linq.Expressions" />
-    <PackageReference Include="System.Memory" />
-    <PackageReference Include="System.Net.Http" />
-    <PackageReference Include="System.Net.Primitives" />
-    <PackageReference Include="System.ObjectModel" />
     <PackageReference Include="System.Reflection" />
-    <PackageReference Include="System.Reflection.Emit" />
-    <PackageReference Include="System.Reflection.Emit.ILGeneration" />
-    <PackageReference Include="System.Reflection.Emit.Lightweight" />
-    <PackageReference Include="System.Reflection.Extensions" />
     <PackageReference Include="System.Reflection.Primitives" />
-    <PackageReference Include="System.Reflection.TypeExtensions" />
     <PackageReference Include="System.Resources.ResourceManager" />
     <PackageReference Include="System.Runtime" />
     <PackageReference Include="System.Runtime.Extensions" />
     <PackageReference Include="System.Runtime.Handles" />
     <PackageReference Include="System.Runtime.InteropServices" />
-    <PackageReference Include="System.Runtime.Numerics" />
-    <PackageReference Include="System.Security.Cryptography.Algorithms" />
-    <PackageReference Include="System.Security.Cryptography.Cng" />
-    <PackageReference Include="System.Security.Cryptography.Csp" />
-    <PackageReference Include="System.Security.Cryptography.Encoding" />
-    <PackageReference Include="System.Security.Cryptography.OpenSsl" />
-    <PackageReference Include="System.Security.Cryptography.Primitives" />
-    <PackageReference Include="System.Security.Cryptography.X509Certificates" />
     <PackageReference Include="System.Text.Encoding" />
-    <PackageReference Include="System.Text.Encoding.Extensions" />
-    <PackageReference Include="System.Text.RegularExpressions" />
     <PackageReference Include="System.Threading" />
     <PackageReference Include="System.Threading.Tasks" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" />
-    <PackageReference Include="System.Threading.Timer" />
-    <PackageReference Include="System.Xml.ReaderWriter" />
-    <PackageReference Include="System.Xml.XDocument" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LauncherLes1.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -22,6 +23,10 @@ namespace LauncherLes1.View.Pages
         private DispatcherTimer dispatcherTimer;
 
         string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+        public static bool isActiveUpdateLauncherWindow { get; set; } = false;
+
+        Window ConfirmUpdate;
 
         public SettingsPage()
         {
@@ -67,7 +72,12 @@ namespace LauncherLes1.View.Pages
 
         private void CheckUpdateLauncher_Click(object sender, RoutedEventArgs e)
         {
-
+            if (isActiveUpdateLauncherWindow == false)
+            {
+                ConfirmUpdate = new ConfirmUpdateWindow();
+                isActiveUpdateLauncherWindow = true;
+                ConfirmUpdate.Show();
+            }
         }
     }
 }

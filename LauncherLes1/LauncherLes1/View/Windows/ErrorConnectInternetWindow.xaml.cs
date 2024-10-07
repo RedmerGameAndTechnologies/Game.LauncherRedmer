@@ -1,23 +1,12 @@
-﻿using System;
-using CheckConnectInternet;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CheckConnectInternet;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace LauncherLes1.View.Pages
 {
-    public partial class ErrorConnectInternetPage : Window
+    public partial class ErrorConnectInternetWindow : Window
     {
-        public ErrorConnectInternetPage()
+        public ErrorConnectInternetWindow()
         {
             InitializeComponent();
         }
@@ -33,7 +22,7 @@ namespace LauncherLes1.View.Pages
         private void Button_Click_Ignore(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MainWindow.isActiveErrorConnectInternetPage = true;
+            MainWindow.isActiveerrorConnectInternetWindow = true;
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
         }
