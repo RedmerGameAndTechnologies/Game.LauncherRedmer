@@ -15,7 +15,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
-            <TextBlock Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Главная страница</TextBlock>
+            <Label FontFamily="/View/Resources/Fonts/RubikBold.ttf" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Главная страница</Label>
         </Grid>
     </Grid>
 </Page>

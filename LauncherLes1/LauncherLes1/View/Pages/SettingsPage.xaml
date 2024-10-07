@@ -10,8 +10,14 @@
       Title="SettingsPage">
     
     <Grid>
-        <CheckBox Name="CheckBox" Content="Авто обновление" HorizontalAlignment="Center" Margin="0,219,0,0" VerticalAlignment="Top" Width="120" Height="15" Foreground="White" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Cecked"/>
-        <Button Name="CheckUpdateLauncher" Click="CheckUpdateLauncher_Click" Content="Проверить обновление лаунчера" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top"/>
-        <Label Name="_textServerVersion" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" Margin="0,0,5,5">Версия лаунчера: </Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Label FontFamily="/View/Resources/Fonts/RubikBold.ttf" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Cтраница настроек</Label>
+            <CheckBox Name="CheckBox" Content="Авто обновление" HorizontalAlignment="Center" Margin="0,219,0,0" VerticalAlignment="Top" Width="120" Height="15" Foreground="White" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Cecked"/>
+            <Button Name="CheckUpdateLauncher" Click="CheckUpdateLauncher_Click" Content="Проверить обновление лаунчера" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Page>

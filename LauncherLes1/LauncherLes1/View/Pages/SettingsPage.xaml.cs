@@ -20,10 +20,6 @@ namespace LauncherLes1.View.Pages
 {
     public partial class SettingsPage : Page
     {
-        private DispatcherTimer dispatcherTimer;
-
-        string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
         public static bool isActiveUpdateLauncherWindow { get; set; } = false;
 
         Window ConfirmUpdate;
@@ -31,7 +27,6 @@ namespace LauncherLes1.View.Pages
         public SettingsPage()
         {
             InitializeComponent();
-            UpdateUI();
             StartCheck_CheckBoxAutoUpdateLauncher();
         }
 
@@ -45,17 +40,6 @@ namespace LauncherLes1.View.Pages
             {
                 CheckBox.IsChecked = false;
             }
-        }
-
-        private void UpdateUI()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
-            dispatcherTimer.Start();
-        }
-        public void BackgroundUIFunction(object sender, EventArgs ea) {
-            _textServerVersion.Content = "Версия лаунчера: " + curver;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)

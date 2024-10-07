@@ -24,7 +24,7 @@ namespace LauncherLes1.View.Windows
         public ConfirmUpdateWindow()
         {
             InitializeComponent();
-            //isUpdateText();
+            isUpdateText();
         }
 
         private async void isUpdateText() {

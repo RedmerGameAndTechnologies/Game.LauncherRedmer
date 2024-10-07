@@ -2,26 +2,21 @@
 using LauncherLes1.View.Pages;
 using LauncherLes1.View.Windows;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Linq;
+using System.Windows.Threading;
 
 namespace LauncherLes1.View
 {
     public partial class MainWindow : Window
     {
+        private DispatcherTimer dispatcherTimer;
+
         public static bool isActiveerrorConnectInternetWindow { get; set; } = false;
+
+        string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         Window ConfirmUpdate;
 
@@ -30,8 +25,21 @@ namespace LauncherLes1.View
             InitializeComponent();
             CheckConnectInternet();
             AutoUpdateLauncher();
-            Cmd($"taskkill");
+            UpdateUI();
         }
+
+        private void UpdateUI()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
+            dispatcherTimer.Start();
+        }
+        public void BackgroundUIFunction(object sender, EventArgs ea)
+        {
+            _textServerVersion.Content = "Версия лаунчера: " + curver;
+        }
+
 
         private void CheckConnectInternet()
         {
@@ -61,16 +69,6 @@ namespace LauncherLes1.View
         private void Discord_Click(object sender, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo("https://discord.gg/efEFJfEcXH") { UseShellExecute = true });
-        }
-
-        public void Cmd(string line)
-        {
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = "cmd",
-                Arguments = $"/c {line}",
-                WindowStyle = ProcessWindowStyle.Hidden,
-            });
         }
 
         #region AutoUpdateLauncher

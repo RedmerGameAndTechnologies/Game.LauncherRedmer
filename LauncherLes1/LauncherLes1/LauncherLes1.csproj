@@ -32,10 +32,6 @@
     <None Remove="View\Resources\Icons\Png\StopProcces.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="View\Resources\Fonts\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="View\Resources\Icons\Png\Open.png" />
   </ItemGroup>
   <ItemGroup>
@@ -162,5 +158,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
 </Project>
