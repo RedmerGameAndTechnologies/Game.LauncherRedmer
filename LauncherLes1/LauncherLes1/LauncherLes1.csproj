@@ -16,7 +16,7 @@
     <Nullable>disable</Nullable>
     <Version>1.0.0-alpha</Version>
     <FileVersion>1.0.0.0</FileVersion>
-    <AssemblyVersion></AssemblyVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <IncludeSymbols>False</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <NeutralLanguage>ru</NeutralLanguage>

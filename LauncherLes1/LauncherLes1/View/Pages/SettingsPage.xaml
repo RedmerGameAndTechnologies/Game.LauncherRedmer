@@ -12,6 +12,6 @@
     <Grid>
         <CheckBox Name="CheckBox" Content="Авто обновление" HorizontalAlignment="Center" Margin="0,219,0,0" VerticalAlignment="Top" Width="120" Height="15" Foreground="White" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Cecked"/>
         <Button Name="CheckUpdateLauncher" Click="CheckUpdateLauncher_Click" Content="Проверить обновление лаунчера" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top"/>
-        <TextBlock Name="_textServerVersion" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" Margin="0,0,5,5">Версия лаунчера: </TextBlock>
+        <Label Name="_textServerVersion" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" Margin="0,0,5,5">Версия лаунчера: </Label>
     </Grid>
 </Page>

@@ -55,7 +55,7 @@ namespace LauncherLes1.View.Pages
             dispatcherTimer.Start();
         }
         public void BackgroundUIFunction(object sender, EventArgs ea) {
-            _textServerVersion.Text = "Версия лаунчера: " + curver;
+            _textServerVersion.Content = "Версия лаунчера: " + curver;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
