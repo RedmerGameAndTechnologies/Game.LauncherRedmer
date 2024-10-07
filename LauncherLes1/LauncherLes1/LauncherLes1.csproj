@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <LangVersion Condition="'$(MSBuildProjectExtension)'=='.csproj'">8.0</LangVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
@@ -14,10 +14,20 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>LogoProject.ico</ApplicationIcon>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
     <Version>1.0.0-alpha</Version>
     <FileVersion>1.0.0.0</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <IncludeSymbols>False</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <NeutralLanguage>ru</NeutralLanguage>
+    <PackAsTool>False</PackAsTool>
+    <AssemblyName>LauncherRemer</AssemblyName>
+    <UseWindowsForms>True</UseWindowsForms>
+    <PackageId>LauncherRedmer</PackageId>
+    <Authors>Michael Yakovlev</Authors>
+    <Company>Redmer</Company>
+    <Product>LauncherRemer</Product>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="View\Resources\Icons\Png\StopProcces.png" />
@@ -64,8 +74,44 @@
     <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.NETCore.Platforms" />
+    <PackageReference Include="Microsoft.NETCore.Targets" />
     <PackageReference Include="MvvmCross" />
+    <PackageReference Include="runtime.native.System" />
+    <PackageReference Include="runtime.native.System.IO.Compression" />
     <PackageReference Include="SharpVectors" />
+    <PackageReference Include="System.Buffers" />
+    <PackageReference Include="System.Collections" />
     <PackageReference Include="System.Data.DataSetExtensions" />
+    <PackageReference Include="System.Diagnostics.Debug" />
+    <PackageReference Include="System.Globalization" />
+    <PackageReference Include="System.IO" />
+    <PackageReference Include="System.IO.Compression" />
+    <PackageReference Include="System.IO.Compression.ZipFile" />
+    <PackageReference Include="System.IO.FileSystem" />
+    <PackageReference Include="System.IO.FileSystem.Primitives" />
+    <PackageReference Include="System.Reflection" />
+    <PackageReference Include="System.Reflection.Primitives" />
+    <PackageReference Include="System.Resources.ResourceManager" />
+    <PackageReference Include="System.Runtime" />
+    <PackageReference Include="System.Runtime.Extensions" />
+    <PackageReference Include="System.Runtime.Handles" />
+    <PackageReference Include="System.Runtime.InteropServices" />
+    <PackageReference Include="System.Text.Encoding" />
+    <PackageReference Include="System.Threading" />
+    <PackageReference Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>
