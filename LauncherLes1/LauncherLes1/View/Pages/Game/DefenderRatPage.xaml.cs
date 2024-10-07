@@ -25,5 +25,10 @@ namespace LauncherLes1.View {
         {
             InitializeComponent();
         }
+
+        private void ButtonCancelDownloadApp(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

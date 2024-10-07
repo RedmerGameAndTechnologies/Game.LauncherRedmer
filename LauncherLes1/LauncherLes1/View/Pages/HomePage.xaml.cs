@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace LauncherLes1.View.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для HomePage.xaml
-    /// </summary>
     public partial class HomePage : Page
     {
         public HomePage()

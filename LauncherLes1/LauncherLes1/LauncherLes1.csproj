@@ -17,25 +17,20 @@
     <Nullable>disable</Nullable>
     <Version>1.0.0-alpha</Version>
     <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="View\Resources\Icons\Png\StopProcces.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="View\Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\Icons\Png\Open.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\Icons\Png\Close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Resources\TopBackground\TopDIABLO.png" />
-    <Resource Include="View\Resources\TopBackground\TopHOTS.png" />
-    <Resource Include="View\Resources\TopBackground\TopHS.png" />
-    <Resource Include="View\Resources\TopBackground\TopOW.png" />
-    <Resource Include="View\Resources\TopBackground\TopSC.png" />
-    <Resource Include="View\Resources\TopBackground\TopSC2.png" />
-    <Resource Include="View\Resources\TopBackground\TopW3.png" />
-    <Resource Include="View\Resources\TopBackground\TopWOW.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\IconsGame\Png\Defender Rat.png" />
@@ -58,6 +53,9 @@
   <ItemGroup>
     <Resource Include="LogoProject.ico" />
     <Resource Include="View\Resources\Icons\LogoProject.ico" />
+    <Resource Include="View\Resources\Icons\Png\StopProcces.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Content Include="View\Resources\Icons\Svg\LogoProject.svg" />
   </ItemGroup>
   <ItemGroup>
