@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,12 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
-namespace LauncherLes1.View
-{
-    /// <summary>
-    /// Логика взаимодействия для WowPage.xaml
-    /// </summary>
+namespace LauncherLes1.View {
     public partial class OpenDefenderRatPage : Page
     {
         public OpenDefenderRatPage()

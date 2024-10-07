@@ -2,6 +2,7 @@
 using LauncherLes1.View.Pages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace LauncherLes1.View
         private void CheckConnectInternet()
         {
             if (isActiveErrorConnectInternetPage == false) {
-                if (Internet.connect() == true)
+                if (Internet.connect() ==  false)
                 {
                     this.Hide();
                     ErrorConnectInternetPage errorConnectInternetPage = new ErrorConnectInternetPage();
@@ -49,6 +50,11 @@ namespace LauncherLes1.View
         private void Home(object sender, RoutedEventArgs e)
         {
             SlideMenu.Visibility = Visibility.Hidden;
+        }
+
+        private void Discord_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("https://discord.gg/efEFJfEcXH") { UseShellExecute = true });
         }
     }
 }

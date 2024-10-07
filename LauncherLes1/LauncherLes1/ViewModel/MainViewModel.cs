@@ -1,12 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using LauncherLes1.View;
 using LauncherLes1.View.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using MvvmCross.ViewModels;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -22,18 +17,26 @@ namespace LauncherLes1.ViewModel
         private Page HOTS = new HOTS();
         private Page SC = new SC();
         private Page Settings = new SettingsPage();
-        private Page _CurPage = new OpenDefenderRatPage();
 
+        private Page _CurPage;
         public Page CurPage
         {
             get => _CurPage;
             set => Set(ref _CurPage, value);
         }
+
+        public MainViewModel()
+        {
+            CurPage = HomePage;
+        }
+
+        #region Переход страниц
         public ICommand OpenHSPage
         {
             get
             {
                 return new RelayCommand(() => CurPage = HS);
+
             }
         }
         public ICommand OpenDefenderRatPage
@@ -74,8 +77,8 @@ namespace LauncherLes1.ViewModel
 
         public ICommand openSettingsPage
         {
-            get 
-            { 
+            get
+            {
                 return new RelayCommand(() => CurPage = Settings);
             }
         }
@@ -84,8 +87,9 @@ namespace LauncherLes1.ViewModel
         {
             get
             {
-                return new RelayCommand(() => CurPage = CurPage);
+                return new RelayCommand(() => CurPage = HomePage);
             }
         }
+        #endregion
     }
 }
