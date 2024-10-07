@@ -10,6 +10,7 @@
         Title="MainWindow" Height="600" Width="1000" MaxHeight="600" MaxWidth="1000"
         MinHeight="600" MinWidth="1000" Background="#FF110203"
         WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>

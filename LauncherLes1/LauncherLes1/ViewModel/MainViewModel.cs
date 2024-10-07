@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using LauncherLes1.View;
 using LauncherLes1.View.Pages;
 using MvvmCross.ViewModels;
