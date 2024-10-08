@@ -25,6 +25,8 @@ namespace LauncherLes1.View.Windows
         {
             InitializeComponent();
             isUpdateText();
+
+            Console.WriteLine($"Название сборки: {exename}");
         }
 
         private async void isUpdateText() {
@@ -74,64 +76,20 @@ namespace LauncherLes1.View.Windows
                             wc.DownloadFile("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/nG-fxSX_twOw5A", "UpdateLaucnher.zip");
                             ZipFile.ExtractToDirectory(zipPathUpdate, exetraPath);
                             File.Delete(zipPathUpdate);
+
+                            ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
+                            info.Arguments = $"/c taskkill /f /im LauncherRemer.exe && timeout /t 1 && del LauncherRemer.exe && ren NewLauncher.exe LauncherRemer.exe && LauncherRemer.exe";
+                            Process.Start(info);
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-                        Cmd($"taskkill /f /im \"{exename}\" && timeout /t 1 && del \"{exepath}\" && ren NewLaucnher.exe \"{exename}\" && \"{exepath}\"");
+                        //Cmd($"taskkill /f /im \"{exename}\" && timeout /t 1 && del \"{exepath}\" && ren NewLaucnher.exe \"{exename}\" && \"{exepath}\"");
                     }
                 }
                 else MessageBox.Show("Ошибка", "подключитесь к интернету", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
-            //string readver = await HttpResponse("https://pastebin.com/raw/dem4T7Xp");
-            //using (HttpClient clientDownloadApp = new HttpClient())
-            //{
-            //    if (Internet.connect())
-            //    {
-            //        if (curver == readver)
-            //        {
-            //            Button1.Visibility = Visibility.Hidden;
-            //        }
-            //        else
-            //        {
-            //            try
-            //            {
-            //                using (var stream = await clientDownloadApp.GetStreamAsync("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/nG-fxSX_twOw5A"))
-            //                    if (stream == null)
-            //                    {
-            //                        throw new Exception("Поток не получен. Возможно, ошибка в URL.");
-            //                    }
-            //                ZipFile.ExtractToDirectory(zipPathUpdate, exetraPath);
-            //                File.Delete(zipPathUpdate);
-            //                Cmd($"taskkill /f /im \"{exename}\" && timeout /t 1 && del \"{exepath}\" && ren NewLaucnher.exe \"{exename}\" && \"{exepath}\"");
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            //            }
-            //            //if (zipPathUpdate == null)
-            //            //{
-            //            //    File.Delete(zipPathUpdate);
-            //            //}
-            //            //else
-            //            //{
-            //            //    using (var stream = await clientDownloadApp.GetStreamAsync("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/wcuilEg_8UcZXw"))
-            //            //    using (var file = new FileStream("New.exe", FileMode.CreateNew))
-            //            //        await stream.CopyToAsync(file);
-            //            //    //ZipFile.ExtractToDirectory(zipPathUpdate, exetraPath);
-            //            //}
-
-
-            //            //using (var file = new FileStream("New.exe", FileMode.CreateNew))
-            //            //    await stream.CopyToAsync(file);
-
-            //        }
-            //    }
-            //    else MessageBox.Show("Ошибка", "подключитесь к интернету", MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
-
         }
 
         private void ButtonNoAllowUpdate(object sender, RoutedEventArgs e)
