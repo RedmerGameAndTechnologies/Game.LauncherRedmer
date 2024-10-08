@@ -18,10 +18,10 @@
         <Grid Grid.Row="2">
             <Button Content="Скачать игру" FontSize="14" HorizontalAlignment="Left" Margin="225,0,0,0" VerticalAlignment="Center" Height="34" Width="140"/>
             <ProgressBar HorizontalAlignment="Left" VerticalAlignment="Center" Width="550" Height="14" Margin="400,0,0,0"></ProgressBar>
-            <Button Margin="955,0,0,0" x:Name="ButtonCancelDownloadFile" Click="ButtonCancelDownloadApp"  HorizontalContentAlignment="Center" BorderBrush="Transparent" FontWeight="Thin" Width="14" Height="14" VerticalAlignment="Center" HorizontalAlignment="Left" IsEnabled="False" Foreground="#00000000" Background="#00000000">
-                <Button.OpacityMask>
-                    <ImageBrush ImageSource="/View/Resources/Icons/Png/StopProcces.png" TileMode="None"/>
-                </Button.OpacityMask>
+            <Button Margin="955,0,0,0" x:Name="ButtonCancelDownloadFile" Click="ButtonCancelDownloadApp"  HorizontalContentAlignment="Center" BorderBrush="Transparent" FontWeight="Thin" Width="14" Height="14" VerticalAlignment="Center" HorizontalAlignment="Left" IsEnabled="False" Foreground="#00000000">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/Pages/Game/StopProccesButton.png"/>
+                </Button.Background>
             </Button>
         </Grid>
     </Grid>

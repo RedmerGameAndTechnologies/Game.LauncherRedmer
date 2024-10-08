@@ -29,14 +29,23 @@ namespace LauncherLes1.View.Windows
 
         private async void isUpdateText() {
             string readver = await HttpResponse("https://pastebin.com/raw/dem4T7Xp");
+
+            readver = readver.Replace(".", ".");
+            curver = curver.Replace(".", ".");
+
             if (curver == readver)
             {
                 _textUpdateLauncher.Text = "У вас последняя версия лаунчера";
+                MyVersion.Text = "Моя версия: " + curver;
+
                 Button1.Visibility = Visibility.Hidden;
             }
             else
             {
                 _textUpdateLauncher.Text = "Вышла новая версия лаунчера";
+
+                MyVersion.Text = "Моя версия: " + curver;
+                NewVersion.Text = "Новая версия: " + readver;
             }
         }
 

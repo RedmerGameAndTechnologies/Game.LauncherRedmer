@@ -29,9 +29,11 @@
     <Product>LauncherRemer</Product>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="View\Resources\Icons\Png\StopProcces.png" />
+    <None Remove="View\Pages\Game\StopProccesButton.png" />
+    <None Remove="View\Resources\Icons\Png\StopProccesButton.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\Pages\Game\StopProccesButton.png" />
     <Resource Include="View\Resources\Icons\Png\Open.png" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +60,7 @@
   <ItemGroup>
     <Resource Include="LogoProject.ico" />
     <Resource Include="View\Resources\Icons\LogoProject.ico" />
-    <Resource Include="View\Resources\Icons\Png\StopProcces.png">
+    <Resource Include="View\Resources\Icons\Png\StopProccesButton.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Content Include="View\Resources\Icons\Svg\LogoProject.svg" />

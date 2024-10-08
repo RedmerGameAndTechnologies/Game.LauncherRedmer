@@ -7,21 +7,23 @@
         mc:Ignorable="d"
         Background="Black"
         AllowsTransparency="True"
-        Title="ConfirmUpdateWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Height="130" Width="200">
+        Title="ConfirmUpdateWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Height="190" Width="300">
 
     <Window.Clip>
-        <RectangleGeometry Rect="0,0,200,130" RadiusX="15" RadiusY="15"/>
+        <RectangleGeometry Rect="0,0,300,190" RadiusX="15" RadiusY="15"/>
     </Window.Clip>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="140"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Name="_textUpdateLauncher" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Вышла новая версия лаунчера" FontSize="20" VerticalAlignment="Top" Height="60" Width="170" Foreground="White"/>
-        <Grid x:Name="GridButton" Grid.Row="1" Margin="0,0,0,16">
-            <Button Content="Да" Name="Button1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonAllowUpdate" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="21,0,0,0" Width="30"/>
-            <Button Content="Нет" Name="Button3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonNoAllowUpdate" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="149,0,0,0" Width="30"/>
+        <TextBlock Name="_textUpdateLauncher" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Вышла новая версия лаунчера" FontSize="20" VerticalAlignment="Top" Height="60" Width="170" Foreground="White"/>
+        <Grid x:Name="GridButton" Grid.Row="1">
+            <Button Content="Да" FontSize="20" Name="Button1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonAllowUpdate" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="50,0,0,0" Width="40" Height="30"/>
+            <Button Content="Нет" FontSize="20" Name="Button3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ButtonNoAllowUpdate" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="0,0,50,0" Width="40" Height="30"/>
         </Grid>
+        <TextBlock x:Name="MyVersion" Text="Моя версия: " Foreground="White" FontSize="17" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="225"/>
+        <TextBlock x:Name="NewVersion" Text="Новая версия: " Foreground="White" FontSize="17" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="225"/>
     </Grid>
 </Window>
