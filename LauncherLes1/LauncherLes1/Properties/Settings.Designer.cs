@@ -34,5 +34,17 @@ namespace LauncherLes1.Properties {
                 this["isAutoUpdateLauncher"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool appIsInstalled {
+            get {
+                return ((bool)(this["appIsInstalled"]));
+            }
+            set {
+                this["appIsInstalled"] = value;
+            }
+        }
     }
 }
