@@ -20,7 +20,7 @@
             <ProgressBar HorizontalAlignment="Left" VerticalAlignment="Center" Width="550" Height="14" Margin="400,0,0,0"></ProgressBar>
             <Button Margin="955,0,0,0" x:Name="ButtonCancelDownloadFile" Click="ButtonCancelDownloadApp"  HorizontalContentAlignment="Center" BorderBrush="Transparent" FontWeight="Thin" Width="14" Height="14" VerticalAlignment="Center" HorizontalAlignment="Left" IsEnabled="False" Foreground="#00000000">
                 <Button.Background>
-                    <ImageBrush ImageSource="/View/Pages/Game/StopProccesButton.png"/>
+                    <ImageBrush ImageSource="/View/Resources/Icons/Png/StopProccesButton.png"/>
                 </Button.Background>
             </Button>
         </Grid>

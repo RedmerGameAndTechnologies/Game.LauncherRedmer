@@ -6,9 +6,7 @@
       xmlns:local="clr-namespace:LauncherLes1.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      d:Background="Black"
       Title="SettingsPage">
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
