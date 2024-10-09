@@ -82,6 +82,8 @@ namespace LauncherLes1.View
             {
                 LaunchGameButton.IsEnabled = true;
                 LaunchGameButton.Content = "Установить";
+
+                ComboBoxChooseGameInLauncher.IsEnabled = false;
             }
         }
         #endregion
@@ -202,6 +204,7 @@ namespace LauncherLes1.View
                 }
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
                 LaunchGameButton.Dispatcher.Invoke(() => ButtonCancelDownloadFile.Visibility = Visibility.Hidden);
+                ComboBoxChooseGameInLauncher.Dispatcher.Invoke(() => ComboBoxChooseGameInLauncher.IsEnabled = true);
                 LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
                 ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
                 return;
