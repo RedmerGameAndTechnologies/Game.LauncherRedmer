@@ -5,10 +5,9 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
-using System.Net.Http;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace LauncherLes1.View.Windows
 {
@@ -22,39 +21,16 @@ namespace LauncherLes1.View.Windows
         string exename = AppDomain.CurrentDomain.FriendlyName;
         string exepath = Assembly.GetEntryAssembly().Location;
 
+        private DispatcherTimer dispatcherTimer;
+
         public ConfirmUpdateWindow()
         {
             InitializeComponent();
-            isUpdateText();
-
-            Console.WriteLine($"Название сборки: {exename}");
-        }
-
-        private async void isUpdateText() {
-            string readver = await HttpResponse("https://pastebin.com/raw/dem4T7Xp");
-
-            readver = readver.Replace(".", ".");
-            curver = curver.Replace(".", ".");
-
-            if (curver == readver)
-            {
-                _textUpdateLauncher.Text = "У вас последняя версия лаунчера";
-                MyVersion.Text = "Моя версия: " + curver;
-
-                Button1.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                _textUpdateLauncher.Text = "Вышла новая версия лаунчера";
-
-                MyVersion.Text = "Моя версия: " + curver;
-                NewVersion.Text = "Новая версия: " + readver;
-            }
         }
 
         private void ButtonAllowUpdate(object sender, RoutedEventArgs e)
         {
-            SettingsPage.isActiveUpdateLauncherWindow = true;
+            SettingsPage.isActiveUpdateLauncherWindow = false;
             Close();
 
             using (WebClient wc = new WebClient())
@@ -64,14 +40,10 @@ namespace LauncherLes1.View.Windows
                     string readver = wc.DownloadString("https://pastebin.com/raw/dem4T7Xp");
                     if (curver == readver)
                     {
-                        Button1.Visibility = Visibility.Hidden;
-                    }
-                    else
-                    {
                         if (!string.IsNullOrEmpty(zipPathUpdate) && File.Exists(zipPathUpdate))
-                                File.Delete(zipPathUpdate);
-                        else if(!string.IsNullOrEmpty(exeLauncherUpdate) && File.Exists(exeLauncherUpdate))
-                                File.Delete(exeLauncherUpdate);
+                            File.Delete(zipPathUpdate);
+                        else if (!string.IsNullOrEmpty(exeLauncherUpdate) && File.Exists(exeLauncherUpdate))
+                            File.Delete(exeLauncherUpdate);
                         try
                         {
                             wc.DownloadFile("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/nG-fxSX_twOw5A", "UpdateLaucnher.zip");
@@ -107,13 +79,6 @@ namespace LauncherLes1.View.Windows
                 Arguments = $"/c {line}",
                 WindowStyle = ProcessWindowStyle.Hidden,
             });
-        }
-
-        async Task<string> HttpResponse(string line) {
-            using (var net = new HttpClient()) {
-                var response = await net.GetAsync(line);
-                return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
-            }
         }
     }
 }

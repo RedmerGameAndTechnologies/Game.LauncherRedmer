@@ -7,7 +7,44 @@
         <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
         <Setter Property="CornerRadius" Value="10" />
     </Style>
-    
+
+    <SolidColorBrush x:Key="ButtonSetting.MouseOver.Background" Color="#0c9643"/>
+    <SolidColorBrush x:Key="ButtonSetting.Pressed.Background" Color="#18783e"/>
+    <SolidColorBrush x:Key="ButtonSetting.Disabled.Background" Color="#014d1f"/>
+    <Style x:Key="ButtonSettings" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#13a84e"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="/View/Resources/Fonts/RubikBold"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource ButtonSetting.MouseOver.Background}"/>
+                            <Setter Property="TextBlock.Foreground" Value="#bababa"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource ButtonSetting.Pressed.Background}"/>
+                            <Setter Property="TextBlock.Foreground" Value="#b3b3b3"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource ButtonSetting.Disabled.Background}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>

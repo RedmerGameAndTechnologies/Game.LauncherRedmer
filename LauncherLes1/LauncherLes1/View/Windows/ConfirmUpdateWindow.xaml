@@ -19,11 +19,10 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock Name="_textUpdateLauncher" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Вышла новая версия лаунчера" FontSize="20" VerticalAlignment="Top" Height="60" Width="170" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Height="23" Width="170" Foreground="White" Margin="0,107,0,0">Скачать обновление?</TextBlock>
         <Grid x:Name="GridButton" Grid.Row="1">
             <Button Style="{DynamicResource ButtonYesNo}" Content="Да" FontSize="20" Name="Button1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonAllowUpdate" Margin="20,0,0,0" Width="100" Height="30"/>
             <Button Style="{DynamicResource ButtonYesNo}" Content="Нет" FontSize="20" Name="Button3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ButtonNoAllowUpdate" Margin="0,0,20,0" Width="100" Height="30"/>
         </Grid>
-        <TextBlock x:Name="MyVersion" Text="Моя версия: " Foreground="White" FontSize="17" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="225"/>
-        <TextBlock x:Name="NewVersion" Text="Новая версия: " Foreground="White" FontSize="17" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="225"/>
     </Grid>
 </Window>

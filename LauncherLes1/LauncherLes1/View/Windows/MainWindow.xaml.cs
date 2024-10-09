@@ -1,10 +1,8 @@
 ﻿using CheckConnectInternet;
 using LauncherLes1.View.Pages;
 using LauncherLes1.View.Windows;
-using Microsoft.Win32;
 using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -17,14 +15,11 @@ namespace LauncherLes1.View
 
         public static bool isActiveerrorConnectInternetWindow { get; set; } = false;
 
-        string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
         Window ConfirmUpdate;
 
         public MainWindow()
         {
             InitializeComponent();
-            CheckConnectInternet();
             AutoUpdateLauncher();
             UpdateUI();
         }
@@ -33,19 +28,14 @@ namespace LauncherLes1.View
         {
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
         }
         public void BackgroundUIFunction(object sender, EventArgs ea)
         {
-            _textServerVersion.Content = "Версия лаунчера: " + curver;
-        }
-
-
-        private void CheckConnectInternet()
-        {
-            if (isActiveerrorConnectInternetWindow == false) {
-                if (Internet.connect() ==  false)
+            if (isActiveerrorConnectInternetWindow == false)
+            {
+                if (Internet.connect() == false)
                 {
                     this.Hide();
                     ErrorConnectInternetWindow errorConnectInternetWindow = new ErrorConnectInternetWindow();
@@ -53,6 +43,7 @@ namespace LauncherLes1.View
                 }
             }
         }
+
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
