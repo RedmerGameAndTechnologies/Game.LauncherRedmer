@@ -41,6 +41,7 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI();
+            isInstallGame();
         }
 
         private void UpdateUI()
@@ -261,6 +262,11 @@ namespace LauncherLes1.View
             var calculateBytesSpeedWrite = e.BytesTransferred / 1024d / (stopWatch.ElapsedMilliseconds / 1000d);
             DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Progress download: " + e.ProgressPercentage + " Average speed download: " + (int)calculateBytesSpeedWrite + " kb/s");
             ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = e.ProgressPercentage);
+        }
+
+        private void isInstallGame()
+        {
+            ButtonCancelDownloadFile.Visibility = Visibility.Hidden;
         }
 
         #region Menu
