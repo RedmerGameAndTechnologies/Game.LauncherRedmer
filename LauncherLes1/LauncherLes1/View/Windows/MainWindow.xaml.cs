@@ -1,6 +1,7 @@
 ﻿using CheckConnectInternet;
 using LauncherLes1.View.Pages;
 using LauncherLes1.View.Windows;
+using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.Reflection;

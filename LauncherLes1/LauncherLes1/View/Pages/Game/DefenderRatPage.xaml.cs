@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -18,6 +19,7 @@ namespace LauncherLes1.View
     {
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
+        private readonly string filePath = @".\";
         private int? idProcessApp = null;
         private bool appIsStarting = false;
         private bool isStartUnzipUpdateFileApp = true;
@@ -290,7 +292,12 @@ namespace LauncherLes1.View
             switch (ComboBoxChooseGameInLauncher.SelectedIndex)
             {
                 case 0:
-                    Process.Start(@".\");
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "explorer.exe",
+                        Arguments = filePath,
+                        UseShellExecute = true
+                    });
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 1:
