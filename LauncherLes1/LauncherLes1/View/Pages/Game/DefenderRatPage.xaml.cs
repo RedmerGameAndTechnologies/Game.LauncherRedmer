@@ -292,12 +292,18 @@ namespace LauncherLes1.View
             switch (ComboBoxChooseGameInLauncher.SelectedIndex)
             {
                 case 0:
-                    Process.Start(new ProcessStartInfo
+                    try
                     {
-                        FileName = "explorer.exe",
-                        Arguments = filePath,
-                        UseShellExecute = true
-                    });
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = "explorer.exe",
+                            Arguments = filePath,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex) {
+                        MessageBox.Show($"Не известная ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 1:
