@@ -28,6 +28,7 @@ namespace LauncherLes1.View
         public static string ArgumentsAppString { get; set; }
         public static int ArgumentsAppSpeedDownload { get; set; } = 81920;
 
+        WebClient clientDownloadApp = new WebClient();
         HttpClient httpClient = new HttpClient();
 
         string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
