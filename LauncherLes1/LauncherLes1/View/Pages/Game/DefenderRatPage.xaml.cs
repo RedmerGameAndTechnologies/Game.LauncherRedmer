@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -43,7 +42,6 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI();
-            isInstallGame();
         }
 
         private void UpdateUI()
@@ -80,7 +78,7 @@ namespace LauncherLes1.View
                 LaunchGameButton.Content = "Игра запущена";
             }
 
-            if (LauncherLes1.Properties.Settings.Default.appIsInstalled == false)
+            if (Directory.Exists(@"Game/") == false)
             {
                 LaunchGameButton.IsEnabled = true;
                 LaunchGameButton.Content = "Установить";
@@ -158,7 +156,7 @@ namespace LauncherLes1.View
                 }, cancellationToken);
                 downloadFileHTTP.ContinueWith(obj =>
                 {
-                DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Unzip...");
+                DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Распаковка файлов...");
                 using (ZipArchive zipFileServer = ZipFile.OpenRead(zipPath))
                 {
                     ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
@@ -203,7 +201,7 @@ namespace LauncherLes1.View
                     }
                 }
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
-                DownloadAppState.Dispatcher.Invoke(() => LauncherLes1.Properties.Settings.Default.appIsInstalled = true);
+                LaunchGameButton.Dispatcher.Invoke(() => ButtonCancelDownloadFile.Visibility = Visibility.Hidden);
                 LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
                 ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
                 return;
@@ -220,7 +218,7 @@ namespace LauncherLes1.View
         #region ButtonLaunchGame
         private void ButtonLaunchGame(object sender, RoutedEventArgs e)
         {
-            if (LauncherLes1.Properties.Settings.Default.appIsInstalled == false)
+            if (Directory.Exists(@"Game/") == false)
             {
                 ServerDownloadChacheGameAsync();
             }
@@ -262,7 +260,7 @@ namespace LauncherLes1.View
         #region ProgresBarDownloadGame
         private void ProgressMessageHandler_HttpReceiveProgress(object sender, HttpProgressEventArgs e)
         {
-            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Процесс установки:: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) );
+            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Процесс установки: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) );
             ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = e.ProgressPercentage);
         }
         #endregion
@@ -276,11 +274,6 @@ namespace LauncherLes1.View
             return (Math.Sign(bytes) * num).ToString() + suf[place];
         }
         #endregion
-
-        private void isInstallGame()
-        {
-            ButtonCancelDownloadFile.Visibility = Visibility.Hidden;
-        }
 
         #region Menu
         private bool ComboBoxChooseGameInLauncherHandle = true;
@@ -326,7 +319,6 @@ namespace LauncherLes1.View
                         try
                         {
                             Directory.Delete(@"Game/", recursive: true);
-                            LauncherLes1.Properties.Settings.Default.appIsInstalled = false;
                             DownloadAppState.Text = "Статус: " + "Игра удалена";
                         }
                         catch (Exception ex) {
