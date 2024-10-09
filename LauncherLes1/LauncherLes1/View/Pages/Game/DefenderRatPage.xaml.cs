@@ -102,7 +102,7 @@ namespace LauncherLes1.View
                 Directory.CreateDirectory(@"Log/");
             }
             DateTime now = DateTime.Now;
-            string todayTimeLog = now.ToString("mmHHddMMyyyyy");
+            string todayTimeLog = now.ToString("mm_HH_dd_MM_yyyy");
             string nameFileLog = @"Log/" + "Log" + todayTimeLog + ".txt";
 
             using (StreamWriter sw = new StreamWriter(nameFileLog, false))
@@ -259,12 +259,15 @@ namespace LauncherLes1.View
         }
         #endregion
 
+        #region ProgresBarDownloadGame
         private void ProgressMessageHandler_HttpReceiveProgress(object sender, HttpProgressEventArgs e)
         {
             DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Процесс установки:: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) );
             ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = e.ProgressPercentage);
         }
+        #endregion
 
+        #region BytesConvertToString
         private static string BytesToString(long byteCount) {
             string[] suf = { "B", "KB", "MB", "GB"};
             long bytes = Math.Abs(byteCount);
@@ -272,6 +275,7 @@ namespace LauncherLes1.View
             double num = Math.Round(bytes / Math.Pow(1024, place), 1);
             return (Math.Sign(bytes) * num).ToString() + suf[place];
         }
+        #endregion
 
         private void isInstallGame()
         {
