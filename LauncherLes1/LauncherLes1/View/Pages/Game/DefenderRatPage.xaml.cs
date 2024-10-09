@@ -261,9 +261,16 @@ namespace LauncherLes1.View
 
         private void ProgressMessageHandler_HttpReceiveProgress(object sender, HttpProgressEventArgs e)
         {
-            var calculateBytesSpeedWrite = e.BytesTransferred / 1024d / (stopWatch.ElapsedMilliseconds / 1000d);
-            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Progress download: " + e.ProgressPercentage + " Average speed download: " + (int)calculateBytesSpeedWrite + " kb/s");
+            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Процесс установки:: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) );
             ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = e.ProgressPercentage);
+        }
+
+        private static string BytesToString(long byteCount) {
+            string[] suf = { "B", "KB", "MB", "GB"};
+            long bytes = Math.Abs(byteCount);
+            int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
+            double num = Math.Round(bytes / Math.Pow(1024, place), 1);
+            return (Math.Sign(bytes) * num).ToString() + suf[place];
         }
 
         private void isInstallGame()
