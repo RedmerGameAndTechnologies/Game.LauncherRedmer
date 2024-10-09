@@ -15,6 +15,7 @@ namespace LauncherLes1.View.Windows
     public partial class ConfirmUpdateWindow : Window
     {
         private readonly string zipPathUpdate = @".\UpdateLaucnher.zip";
+        private readonly string exeLauncherUpdate = @".\NewLauncher.exe";
         private readonly string exetraPath = @".\";
 
         string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -68,23 +69,23 @@ namespace LauncherLes1.View.Windows
                     else
                     {
                         if (!string.IsNullOrEmpty(zipPathUpdate) && File.Exists(zipPathUpdate))
-                        {
-                            File.Delete(zipPathUpdate);
-                        }
+                                File.Delete(zipPathUpdate);
+                        else if(!string.IsNullOrEmpty(exeLauncherUpdate) && File.Exists(exeLauncherUpdate))
+                                File.Delete(exeLauncherUpdate);
                         try
                         {
                             wc.DownloadFile("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/nG-fxSX_twOw5A", "UpdateLaucnher.zip");
                             ZipFile.ExtractToDirectory(zipPathUpdate, exetraPath);
                             File.Delete(zipPathUpdate);
-
-                            ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
-                            info.Arguments = $"/c taskkill /f /im LauncherRemer.exe && timeout /t 1 && del LauncherRemer.exe && ren NewLauncher.exe LauncherRemer.exe && LauncherRemer.exe";
-                            Process.Start(info);
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
+                        ProcessStartInfo info = new ProcessStartInfo("cmd.exe");
+                        info.Arguments = $"/c taskkill /f /im LauncherRemer.exe && timeout /t 1 && del LauncherRemer.exe && ren NewLauncher.exe LauncherRemer.exe && LauncherRemer.exe";
+                        info.WindowStyle = ProcessWindowStyle.Hidden;
+                        Process.Start(info);
                         //Cmd($"taskkill /f /im \"{exename}\" && timeout /t 1 && del \"{exepath}\" && ren NewLaucnher.exe \"{exename}\" && \"{exepath}\"");
                     }
                 }
