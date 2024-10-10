@@ -51,7 +51,6 @@ namespace LauncherLes1.View.Pages
                 {
                     currentVersion.Content = "Моя версия: " + curver;
                     DownloadUpdate.Visibility = Visibility.Hidden;
-                    newVersion.Visibility = Visibility.Hidden;
                 }
             }
         }
