@@ -38,7 +38,6 @@
                 <Border BorderThickness="5,5,5,5" Background="#4a4848" CornerRadius="15" Opacity="0.8"/>
                 <Grid Background="Transparent">
                     <Label Name="currentVersion" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0" Foreground="White" FontSize="11" Content="Моя версия:"/>
-                    <Label Name="newVersion" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,5" Foreground="White" FontSize="11" Content="Новая версия:"/>
                 </Grid>
             </Grid>
         </Grid>
