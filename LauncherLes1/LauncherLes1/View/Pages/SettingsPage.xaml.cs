@@ -42,17 +42,14 @@ namespace LauncherLes1.View.Pages
                 readver = readver.Replace(".", ".");
                 curver = curver.Replace(".", ".");
 
-                //currentVersion.Content = "Моя версия: " + curver;
-                newVersion.Content = "Новая версия: " + readver;
-
-                if (curver == readver)
+                if (curver.CompareTo(readver) < 0)
                 {
                     DownloadUpdate.Visibility = Visibility.Visible;
-                    currentVersion.Content = "Моя версия: " + curver;
+                    currentVersion.Content = "Моя версия: " + curver + " \nНовая версия: " + readver;
                 }
                 else
                 {
-                    currentVersion.Content = "Моя версия: " + curver + " / " + readver;
+                    currentVersion.Content = "Моя версия: " + curver;
                     DownloadUpdate.Visibility = Visibility.Hidden;
                     newVersion.Visibility = Visibility.Hidden;
                 }

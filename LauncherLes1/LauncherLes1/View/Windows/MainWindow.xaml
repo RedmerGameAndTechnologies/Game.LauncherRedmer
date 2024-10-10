@@ -42,7 +42,6 @@
                         <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="Главная" Command="{Binding openHomePage}"/>
                         <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="Настройки" Command="{Binding openSettingsPage}"/>
                         <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="Наш дискорд" Click="Discord_Click"/>
-                        <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="Новости"/>
                     </StackPanel>
                 </Border>
             </Grid>
@@ -61,28 +60,11 @@
                 <Border BorderThickness="1,0,1,1" CornerRadius="0, 0, 0, 15" BorderBrush="#FF303031"/>
                 <Border BorderThickness="0" Background="Black" Opacity="0.6"/>
                 <StackPanel Orientation="Vertical">
+                    <Label Margin="10" Foreground="White" FontSize="20" FontFamily="{StaticResource Rubik-Bold}" Content="Список игр:" HorizontalContentAlignment="Center" RenderTransformOrigin="1,0.5" Width="145"/>
                     <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenDefenderRatPage}"
                         Content="Defender Rat">
                         <Button.Resources>
                             <ImageSource x:Key="Img">/View/Resources/IconsGame/Png/Defender Rat.png</ImageSource>
-                        </Button.Resources>
-                    </Button>
-                    <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenHSPage}"
-                        Content="GameLinuxMy">
-                        <Button.Resources>
-                            <ImageSource x:Key="Img">/View/Resources/IconsGame/Png/Logo.png</ImageSource>
-                        </Button.Resources>
-                    </Button>
-                    <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenOWPage}"
-                        Content="Pavr was walking">
-                        <Button.Resources>
-                            <ImageSource x:Key="Img">/View/Resources/IconsGame/Png/Logo.png</ImageSource>
-                        </Button.Resources>
-                    </Button>
-                    <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenD3Page}"
-                        Content="Игра РЖД RZD 2">
-                        <Button.Resources>
-                            <ImageSource x:Key="Img">/View/Resources/IconsGame/Png/Logo.png</ImageSource>
                         </Button.Resources>
                     </Button>
                 </StackPanel>

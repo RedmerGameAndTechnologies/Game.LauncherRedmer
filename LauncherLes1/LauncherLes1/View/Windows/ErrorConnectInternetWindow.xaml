@@ -18,7 +18,7 @@
 
     <Grid>
         <Image Source="/View/Resources/Icons/Jpg/sad_smiley.jpg" Width="150" VerticalAlignment="Top" Margin="0,107,0,0" HorizontalAlignment="Center"/>
-        <TextBlock Text="Проблема подключению к интернету" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,244,0,0" FontFamily="Arial Black"/>
+        <Label Content="Проблема подключению к интернету" FontSize="20" FontFamily="{StaticResource Rubik-Bold}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,244,0,0"/>
         <Button Width="300" Height="50" Content="Повторить подключение" FontSize="20" Margin="250,276,250,124" BorderBrush="{x:Null}" VerticalContentAlignment="Center" Click="Button_Click_Repeat" FontFamily="Bahnschrift Light"/>
         <Button Content="Игнорировать" FontSize="15" Margin="300,331,300,78" BorderBrush="{x:Null}" VerticalContentAlignment="Center" Click="Button_Click_Ignore" FontFamily="Bahnschrift Light" Width="200" Height="25"/>
     </Grid>
