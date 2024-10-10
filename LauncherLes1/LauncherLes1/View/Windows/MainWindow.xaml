@@ -110,7 +110,6 @@
                     </ToggleButton.Template>
                 </ToggleButton>
             </Grid>
-            <Label Name="_textServerVersion" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" Margin="0,0,10,490" Grid.Column="1" Grid.Row="1">Версия лаунчера:</Label>
         </Grid>
     </Border>
 </Window>

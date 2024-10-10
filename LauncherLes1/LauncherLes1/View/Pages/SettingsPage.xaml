@@ -18,7 +18,7 @@
             </Grid>
         </Border>
         <Grid Grid.Row="1">
-            <Label FontFamily="/View/Resources/Fonts/RubikBold.ttf" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Cтраница настроек</Label>
+            <Label FontFamily="{StaticResource Rubik}" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Cтраница настроек</Label>
             <Grid Height="150" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <Border Height="150" Width="500" CornerRadius="15" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#383838" Opacity="0.8"/>

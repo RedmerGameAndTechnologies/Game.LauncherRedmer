@@ -7,7 +7,6 @@ using System.IO.Compression;
 using System.Net;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Threading;
 
 namespace LauncherLes1.View.Windows
 {
@@ -20,8 +19,6 @@ namespace LauncherLes1.View.Windows
         string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         string exename = AppDomain.CurrentDomain.FriendlyName;
         string exepath = Assembly.GetEntryAssembly().Location;
-
-        private DispatcherTimer dispatcherTimer;
 
         public ConfirmUpdateWindow()
         {

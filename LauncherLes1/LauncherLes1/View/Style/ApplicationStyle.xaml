@@ -8,6 +8,10 @@
         <Setter Property="CornerRadius" Value="10" />
     </Style>
 
+    <FontFamily x:Key="Rubik">/View/Resources/Fonts/Rubik.ttf#Rubik</FontFamily>
+    <FontFamily x:Key="Rubik-Bold">/View/Resources/Fonts/RubikBold.ttf#Rubik</FontFamily>
+
+
     <SolidColorBrush x:Key="ButtonSetting.MouseOver.Background" Color="#0c9643"/>
     <SolidColorBrush x:Key="ButtonSetting.Pressed.Background" Color="#18783e"/>
     <SolidColorBrush x:Key="ButtonSetting.Disabled.Background" Color="#014d1f"/>

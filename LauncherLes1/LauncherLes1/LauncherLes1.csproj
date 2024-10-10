@@ -39,9 +39,17 @@
     <Optimize>True</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="View\Resources\Fonts\Rubik.ttf" />
+    <None Remove="View\Resources\Fonts\RubikBold.ttf" />
     <None Remove="View\Resources\Icons\Png\StopProccesButton.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\Resources\Fonts\Rubik.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Fonts\RubikBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="View\Resources\Icons\Png\Open.png" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +121,7 @@
     <PackageReference Include="System.Diagnostics.DiagnosticSource" />
     <PackageReference Include="System.Diagnostics.Tools" />
     <PackageReference Include="System.Diagnostics.Tracing" />
+    <PackageReference Include="System.Drawing.Common" />
     <PackageReference Include="System.Formats.Asn1" />
     <PackageReference Include="System.Globalization" />
     <PackageReference Include="System.Globalization.Calendars" />
