@@ -22,6 +22,7 @@ namespace LauncherLes1.View
         private int? idProcessApp = null;
         private bool appIsStarting = false;
         private bool isStartUnzipUpdateFileApp = true;
+/*        private static bool isFileDownloadingNow = false;*/
         private Process processApp;
 
         private DispatcherTimer dispatcherTimer;
@@ -42,6 +43,9 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI();
+
+            ButtonCancelDownloadFile.IsEnabled = false;
+            ButtonCancelDownloadFile.Visibility = Visibility.Hidden;
         }
 
         private void UpdateUI()
@@ -161,6 +165,7 @@ namespace LauncherLes1.View
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Распаковка файлов...");
                 using (ZipArchive zipFileServer = ZipFile.OpenRead(zipPath))
                 {
+                        
                     ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
                     int zipFilesCount = zipFileServer.Entries.Count;
                     ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Maximum = zipFilesCount);

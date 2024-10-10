@@ -3,14 +3,13 @@
 
     <SolidColorBrush x:Key="BackgroundColor" Color="#354D73"/>
 
+    <FontFamily x:Key="Rubik">/View/Resources/Fonts/Rubik.ttf#Rubik</FontFamily>
+    <FontFamily x:Key="Rubik-Bold">/View/Resources/Fonts/RubikBold.ttf#Rubik</FontFamily>
+
     <Style x:Key="WindowBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
         <Setter Property="CornerRadius" Value="10" />
     </Style>
-
-    <FontFamily x:Key="Rubik">/View/Resources/Fonts/Rubik.ttf#Rubik</FontFamily>
-    <FontFamily x:Key="Rubik-Bold">/View/Resources/Fonts/RubikBold.ttf#Rubik</FontFamily>
-
 
     <SolidColorBrush x:Key="ButtonSetting.MouseOver.Background" Color="#0c9643"/>
     <SolidColorBrush x:Key="ButtonSetting.Pressed.Background" Color="#18783e"/>
@@ -19,7 +18,7 @@
         <Setter Property="Background" Value="#13a84e"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="15"/>
-        <Setter Property="FontFamily" Value="/View/Resources/Fonts/RubikBold"/>
+        <Setter Property="FontFamily" Value="{StaticResource Rubik}"/>
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Template">
@@ -73,7 +72,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
-        <Setter Property="FontFamily" Value="/View/Resources/Fonts/RubikBold.ttf"/>
+        <Setter Property="FontFamily" Value="{StaticResource Rubik-Bold}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -244,4 +243,39 @@
         </Grid>
     </ControlTemplate>
 
+    <Style x:Key="ButtonDownloadGame" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="#e66617"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#c9c9c9"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="{StaticResource Rubik-Bold}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="5">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#e07431"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#d15a11"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="#a3460d"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#525150"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
