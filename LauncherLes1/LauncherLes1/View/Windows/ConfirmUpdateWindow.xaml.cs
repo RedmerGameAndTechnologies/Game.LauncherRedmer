@@ -1,5 +1,6 @@
 ﻿using CheckConnectInternet;
 using LauncherLes1.View.Pages;
+using LauncherLes1.View.Resources.Script;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -19,6 +20,8 @@ namespace LauncherLes1.View.Windows
         public static string workingDir = Path.GetDirectoryName(execPath);
         public static string sourcePath = Path.Combine(workingDir, Path.GetFileName(execPath));
         public static string exenames = Path.GetFileName(sourcePath);
+
+        private CmdClass CmdClass;
 
         public ConfirmUpdateWindow()
         {
@@ -48,7 +51,7 @@ namespace LauncherLes1.View.Windows
                     {
                         MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    Cmd($"taskkill /f /im \"{exenames}\" && timeout /t 1 && del \"{execPath}\" && ren NewLauncher.exe \"{exenames}\" && \"{execPath}\"");
+                    CmdClass.Cmd($"taskkill /f /im \"{exenames}\" && timeout /t 1 && del \"{execPath}\" && ren NewLauncher.exe \"{exenames}\" && \"{execPath}\"");
                 }
                 else MessageBox.Show("Ошибка", "подключитесь к интернету", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -58,16 +61,6 @@ namespace LauncherLes1.View.Windows
         {
             SettingsPage.isActiveUpdateLauncherWindow = false;
             Close();
-        }
-
-        public void Cmd(string line)
-        {
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = "cmd",
-                Arguments = $"/c {line}",
-                WindowStyle = ProcessWindowStyle.Hidden,
-            });
         }
     }
 }
