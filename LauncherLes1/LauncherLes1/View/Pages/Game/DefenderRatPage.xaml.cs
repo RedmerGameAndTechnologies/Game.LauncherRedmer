@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
@@ -22,7 +23,7 @@ namespace LauncherLes1.View
         private int? idProcessApp = null;
         private bool appIsStarting = false;
         private bool isStartUnzipUpdateFileApp = true;
-/*        private static bool isFileDownloadingNow = false;*/
+        private static bool isFileDownloadingNow = false;
         private Process processApp;
 
         private DispatcherTimer dispatcherTimer;
@@ -43,9 +44,6 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI();
-
-            ButtonCancelDownloadFile.IsEnabled = false;
-            ButtonCancelDownloadFile.Visibility = Visibility.Hidden;
         }
 
         private void UpdateUI()
@@ -71,23 +69,32 @@ namespace LauncherLes1.View
                 else if (allprocessed.Id != idProcessApp) appIsStarting = false;
             }
 
-            if (appIsStarting == false)
+            if (isFileDownloadingNow == true)
             {
                 LaunchGameButton.IsEnabled = true;
-                LaunchGameButton.Content = "Играть";
+                LaunchGameButton.Content = "Отмена";
             }
             else
             {
-                LaunchGameButton.IsEnabled = false;
-                LaunchGameButton.Content = "Игра запущена";
-            }
+                if (Directory.Exists(@"Game/") == false)
+                {
+                    LaunchGameButton.IsEnabled = true;
+                    LaunchGameButton.Content = "Установить";
 
-            if (Directory.Exists(@"Game/") == false)
-            {
-                LaunchGameButton.IsEnabled = true;
-                LaunchGameButton.Content = "Установить";
-
-                ComboBoxChooseGameInLauncher.IsEnabled = false;
+                    ComboBoxChooseGameInLauncher.IsEnabled = false;
+                }
+                else{
+                    if (appIsStarting == false)
+                    {
+                        LaunchGameButton.IsEnabled = true;
+                        LaunchGameButton.Content = "Играть";
+                    }
+                    else
+                    {
+                        LaunchGameButton.IsEnabled = false;
+                        LaunchGameButton.Content = "Игра запущена";
+                    }
+                }
             }
         }
         #endregion
@@ -120,8 +127,7 @@ namespace LauncherLes1.View
         CancellationTokenSource cancelTokenSource;
         public void ServerDownloadChacheGameAsync()
         {
-            ButtonCancelDownloadFile.IsEnabled = true;
-            ButtonCancelDownloadFile.Visibility = Visibility.Visible;
+            isFileDownloadingNow = true;
             if (!string.IsNullOrEmpty(zipPath) && File.Exists(zipPath)) {
                 File.Delete(zipPath);
             }
@@ -208,7 +214,7 @@ namespace LauncherLes1.View
                     }
                 }
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
-                LaunchGameButton.Dispatcher.Invoke(() => ButtonCancelDownloadFile.Visibility = Visibility.Hidden);
+                DownloadAppState.Dispatcher.Invoke(() => isFileDownloadingNow = false);
                 ComboBoxChooseGameInLauncher.Dispatcher.Invoke(() => ComboBoxChooseGameInLauncher.IsEnabled = true);
                 LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
                 ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
@@ -226,11 +232,13 @@ namespace LauncherLes1.View
         #region ButtonLaunchGame
         private void ButtonLaunchGame(object sender, RoutedEventArgs e)
         {
-            if (Directory.Exists(@"Game/") == false)
-            {
-                ServerDownloadChacheGameAsync();
+            if (LaunchGameButton.Content.ToString() == "Установить") {
+                if (Directory.Exists(@"Game/") == false)
+                {
+                    ServerDownloadChacheGameAsync();
+                }
             }
-            else {
+            if (LaunchGameButton.Content.ToString() == "Играть") {
                 try
                 {
                     processApp = new Process();
@@ -245,23 +253,18 @@ namespace LauncherLes1.View
                     LoggingProcess("EXCEPTION" + ex.Message.ToString());
                 }
             }
-        }
-        #endregion
+            if (LaunchGameButton.Content.ToString() == "Отмена") {
+                clientDownloadApp.CancelAsync();
+                try
+                {
+                    cancelTokenSource.Cancel();
+                }
+                catch (Exception ex)
+                {
+                    DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "State: " + ex.Message.ToString());
+                }
+            }
 
-        #region CancelDownloadGame
-        private void ButtonCancelDownloadApp(object sender, RoutedEventArgs e)
-        {
-            clientDownloadApp.CancelAsync();
-            try
-            {
-                cancelTokenSource.Cancel();
-            }
-            catch (Exception ex)
-            {
-                DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "State: " + ex.Message.ToString());
-            }
-            ButtonCancelDownloadFile.IsEnabled = false;
-            ButtonCancelDownloadFile.Visibility = Visibility.Hidden;
         }
         #endregion
 
