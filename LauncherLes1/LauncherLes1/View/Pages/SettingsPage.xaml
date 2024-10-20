@@ -19,6 +19,10 @@
         </Border>
         <Grid Grid.Row="1">
             <Label FontFamily="{StaticResource Rubik}" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Cтраница настроек</Label>
+
+            <Label HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="22" Content="Доп настройки" Margin="409,115,0,0"/>
+            <CheckBox Name="CheckBoxInstallNow" Content="Запускать игру сразу после установки" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Height="15" Foreground="White" Unchecked="CheckBoxInstallNow_Unchecked" Checked="CheckBoxInstallNow_Cecked" Margin="380,160,0,0"/>
+
             <Grid Height="150" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <Border Height="150" Width="500" CornerRadius="15" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#383838" Opacity="0.8"/>

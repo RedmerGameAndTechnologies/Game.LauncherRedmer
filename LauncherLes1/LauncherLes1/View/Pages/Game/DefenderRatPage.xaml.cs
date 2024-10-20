@@ -214,14 +214,16 @@ namespace LauncherLes1.View
                 }
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
                 DownloadAppState.Dispatcher.Invoke(() => isFileDownloadingNow = false);
-                DownloadAppState.Dispatcher.Invoke(() => Task.Run(() => {
-                    processApp = new Process();
-                    processApp.StartInfo.UseShellExecute = false;
-                    processApp.StartInfo.FileName = @"Game\The World of Quantrianism.exe";
-                    processApp.StartInfo.Arguments = ArgumentsAppString;
-                    processApp.Start();
-                    idProcessApp = processApp.Id;
-                }));
+                if (Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt == true) {
+                   DownloadAppState.Dispatcher.Invoke(() => Task.Run(() => {
+                        processApp = new Process();
+                        processApp.StartInfo.UseShellExecute = false;
+                        processApp.StartInfo.FileName = @"Game\The World of Quantrianism.exe";
+                        processApp.StartInfo.Arguments = ArgumentsAppString;
+                        processApp.Start();
+                        idProcessApp = processApp.Id;
+                   }));
+                }
                 ComboBoxChooseGameInLauncher.Dispatcher.Invoke(() => ComboBoxChooseGameInLauncher.IsEnabled = true);
                 LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
                 ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);

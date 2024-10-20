@@ -11,8 +11,8 @@ using System.Windows;
 [assembly: AssemblyCopyright("Copyright © Redmer")]
 [assembly: AssemblyTrademark("")]
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("1.0.1.2")]
-[assembly: AssemblyFileVersion("1.0.1.2")]
+[assembly: AssemblyVersion("1.0.1.5")]
+[assembly: AssemblyFileVersion("1.0.1.5")]
 [assembly: NeutralResourcesLanguage("ru")]
 
 [assembly: ThemeInfo(

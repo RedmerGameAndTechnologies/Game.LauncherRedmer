@@ -66,7 +66,7 @@ namespace LauncherLes1.View
         #region AutoUpdateLauncher
         private void AutoUpdateLauncher()
         {
-            if (LauncherLes1.Properties.Settings.Default.isAutoUpdateLauncher == true)
+            if (Properties.Settings.Default.isAutoUpdateLauncher == true)
             {
                 if (SettingsPage.isActiveUpdateLauncherWindow == false)
                 {

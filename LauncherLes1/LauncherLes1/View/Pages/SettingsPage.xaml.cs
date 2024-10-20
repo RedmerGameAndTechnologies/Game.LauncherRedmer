@@ -57,26 +57,43 @@ namespace LauncherLes1.View.Pages
 
         private void StartCheck_CheckBoxAutoUpdateLauncher()
         {
-            if (LauncherLes1.Properties.Settings.Default.isAutoUpdateLauncher == true)
-            {
+            if (Properties.Settings.Default.isAutoUpdateLauncher == true) {
                 CheckBox.IsChecked = true;
             }
-            else
-            {
+            else {
                 CheckBox.IsChecked = false;
+            }
+
+            if (Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt == true) {
+                CheckBoxInstallNow.IsChecked = true;
+            }
+            else {
+                CheckBoxInstallNow.IsChecked = false;
             }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            LauncherLes1.Properties.Settings.Default.isAutoUpdateLauncher = false;
-            LauncherLes1.Properties.Settings.Default.Save();
+            Properties.Settings.Default.isAutoUpdateLauncher = false;
+            Properties.Settings.Default.Save();
         }
 
         private void CheckBox_Cecked(object sender, RoutedEventArgs e)
         {
-            LauncherLes1.Properties.Settings.Default.isAutoUpdateLauncher = true;
-            LauncherLes1.Properties.Settings.Default.Save();
+            Properties.Settings.Default.isAutoUpdateLauncher = true;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CheckBoxInstallNow_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt = false;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CheckBoxInstallNow_Cecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt = true;
+            Properties.Settings.Default.Save();
         }
 
         private void CheckUpdateLauncher_Click(object sender, RoutedEventArgs e)
