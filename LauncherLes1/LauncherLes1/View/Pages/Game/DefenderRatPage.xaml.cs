@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LauncherLes1.View.Resources.Script;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -32,9 +33,6 @@ namespace LauncherLes1.View
 
         WebClient clientDownloadApp = new WebClient();
         HttpClient httpClient = new HttpClient();
-
-        string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        string exepath = Assembly.GetEntryAssembly().Location;
 
         public OpenDefenderRatPage()
         {
@@ -330,6 +328,7 @@ namespace LauncherLes1.View
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 1:
+                    CreateIconClass.CreateShortcut();
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 2:
