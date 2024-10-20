@@ -11,6 +11,16 @@
         <Setter Property="CornerRadius" Value="10" />
     </Style>
 
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <SolidColorBrush x:Key="ButtonSetting.MouseOver.Background" Color="#0c9643"/>
     <SolidColorBrush x:Key="ButtonSetting.Pressed.Background" Color="#18783e"/>
     <SolidColorBrush x:Key="ButtonSetting.Disabled.Background" Color="#014d1f"/>
@@ -48,26 +58,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="Button.Static.Border" Color="Transparent"/>
-    <SolidColorBrush x:Key="Button.Static.Foreground" Color="White"/>
     <SolidColorBrush x:Key="Button.MouseOver.Foreground" Color="#FF5D5D5D"/>
     <SolidColorBrush x:Key="Button.Pressed.Foreground" Color="#FF424242"/>
     <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
     <Style x:Key="ButtonYesNo" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-        <Setter Property="Foreground" Value="{StaticResource Button.Static.Foreground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -92,7 +90,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <ControlTemplate x:Key="TopMenuButtons" TargetType="Button">
         <Grid Name="Btn" Height="40" Margin="20,0,0,0">
             <Border>
@@ -242,13 +239,12 @@
             </Border>
         </Grid>
     </ControlTemplate>
-
     <Style x:Key="ButtonDownloadGame" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="#e66617"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Foreground" Value="#c9c9c9"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="{StaticResource Rubik-Bold}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
