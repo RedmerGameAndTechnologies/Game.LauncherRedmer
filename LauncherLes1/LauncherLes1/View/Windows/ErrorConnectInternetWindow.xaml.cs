@@ -1,6 +1,5 @@
 ﻿using CheckConnectInternet;
 using System.Windows;
-using System.Windows.Input;
 
 namespace LauncherLes1.View.Pages
 {
