@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Windows;
+using System.Windows.Input;
 
 namespace LauncherLes1.View.Windows
 {
@@ -26,6 +27,14 @@ namespace LauncherLes1.View.Windows
         public ConfirmUpdateWindow()
         {
             InitializeComponent();
+        }
+
+        private void WindowMove(object sender, MouseButtonEventArgs e)
+        {   
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove(); // this
+            }
         }
 
         private void ButtonAllowUpdate(object sender, RoutedEventArgs e)
