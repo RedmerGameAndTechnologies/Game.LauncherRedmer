@@ -28,9 +28,10 @@ namespace LauncherLes1.View
         {
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
             dispatcherTimer.Start();
         }
+
         public void BackgroundUIFunction(object sender, EventArgs ea)
         {
             if (isActiveerrorConnectInternetWindow == false)
@@ -43,7 +44,6 @@ namespace LauncherLes1.View
                 }
             }
         }
-
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

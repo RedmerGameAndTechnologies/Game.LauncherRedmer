@@ -9,14 +9,8 @@ namespace LauncherLes1.View.Pages
         public ErrorConnectInternetWindow()
         {
             InitializeComponent();
-        }
 
-        private void WindowMove(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove(); // this
-            }
+            MainWindow.isActiveerrorConnectInternetWindow = true;
         }
 
         private void Button_Click_Ignore(object sender, RoutedEventArgs e)

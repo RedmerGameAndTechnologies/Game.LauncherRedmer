@@ -22,8 +22,6 @@ namespace LauncherLes1.View.Windows
         public static string sourcePath = Path.Combine(workingDir, Path.GetFileName(execPath));
         public static string exenames = Path.GetFileName(sourcePath);
 
-        private CmdClass CmdClass;
-
         public ConfirmUpdateWindow()
         {
             InitializeComponent();
@@ -33,7 +31,7 @@ namespace LauncherLes1.View.Windows
         {   
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                DragMove(); // this
+                DragMove();
             }
         }
 
