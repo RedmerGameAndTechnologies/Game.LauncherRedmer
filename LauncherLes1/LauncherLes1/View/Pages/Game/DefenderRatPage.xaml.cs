@@ -336,8 +336,7 @@ namespace LauncherLes1.View
                     {
                         try
                         {
-                            Directory.Delete(@"Game/", recursive: true);
-                            DownloadAppState.Text = "Статус: " + "Игра удалена";
+                            Directory.Delete(@"Game/", recursive: true);                            DownloadAppState.Text = "Статус: " + "Игра удалена";
                         }
                         catch (Exception ex) {
                             MessageBox.Show($"Ошибка у вас игра запущена: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);

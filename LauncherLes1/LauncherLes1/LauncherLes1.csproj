@@ -42,6 +42,7 @@
     <None Remove="View\Resources\Fonts\Rubik.ttf" />
     <None Remove="View\Resources\Fonts\RubikBold.ttf" />
     <None Remove="View\Resources\Icons\Png\StopProccesButton.png" />
+    <None Remove="View\Windows\closeProject.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -92,6 +93,7 @@
     <Resource Include="View\Resources\Icons\Png\StopProccesButton.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="View\Windows\closeProject.png" />
     <Content Include="View\Resources\Icons\Svg\LogoProject.svg" />
   </ItemGroup>
   <ItemGroup>

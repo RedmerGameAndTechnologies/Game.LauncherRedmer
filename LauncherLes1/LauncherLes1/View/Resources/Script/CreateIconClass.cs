@@ -13,7 +13,7 @@ namespace LauncherLes1.View.Resources.Script
             WshShell shell = new WshShell();
             string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Game.lnk";
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
-            shortcut.Description = "New shortcut for a Notepad";
+            shortcut.Description = "LauncherRedmer my games";
             shortcut.Hotkey = "Ctrl+Shift+N";
             shortcut.TargetPath = execPath;
             shortcut.Save();
