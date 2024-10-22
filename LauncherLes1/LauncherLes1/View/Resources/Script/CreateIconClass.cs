@@ -1,4 +1,5 @@
 ﻿using IWshRuntimeLibrary;
+using System;
 using System.Diagnostics;
 
 namespace LauncherLes1.View.Resources.Script
@@ -7,14 +8,22 @@ namespace LauncherLes1.View.Resources.Script
     {
         public static string execPath = Process.GetCurrentProcess().MainModule.FileName;
 
-        public static void CreateShortcut()
+        public static void CreateShortcut(string name/*, string serchicon*/)
         {
             object shDesktop = (object)"Desktop";
             WshShell shell = new WshShell();
-            string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Game.lnk";
+            string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + $@"\{name}.lnk";
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
             shortcut.Description = "LauncherRedmer my games";
             shortcut.Hotkey = "Ctrl+Shift+N";
+/*            if (!string.IsNullOrEmpty(serchicon))
+            {
+                shortcut.IconLocation = serchicon;
+            }
+            else
+            {
+                Console.WriteLine("Иконка не найдена.");
+            }*/
             shortcut.TargetPath = execPath;
             shortcut.Save();
         }

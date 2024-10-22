@@ -1,25 +1,28 @@
 ﻿using LauncherLes1.View.Resources.Script;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Handlers;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace LauncherLes1.View
 {
     public partial class OpenDefenderRatPage : Page
     {
+        private readonly static string name = "DefenderRat";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
-        private readonly string filePath = @".\";
+        private readonly string appGamePath = $@"{name}/";
         private int? idProcessApp = null;
         private bool appIsStarting = false;
         private bool isStartUnzipUpdateFileApp = true;
@@ -41,7 +44,30 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI();
+            //ReadJsonFile();
         }
+
+/*        #region ReadJsonFile
+        private void ReadJsonFile()
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                try
+                {
+                    httpClient.GetStringAsync("https://pastebin.com/raw/rv38asrb");
+                }
+                catch (HttpRequestException e) when (e.Message.Contains("404"))
+                {
+                    MessageBox.Show($"Файла нет на сервере: {e.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+
+            }
+        }
+        #endregion*/
 
         private void UpdateUI()
         {
@@ -73,7 +99,7 @@ namespace LauncherLes1.View
             }
             else
             {
-                if (Directory.Exists(@"Game/") == false)
+                if (!Directory.Exists(appGamePath))
                 {
                     LaunchGameButton.IsEnabled = true;
                     LaunchGameButton.Content = "Установить";
@@ -184,30 +210,30 @@ namespace LauncherLes1.View
                     ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = zipFilesCount);
                 }
                 File.Delete(zipPath);
-                foreach (string dgfse in Directory.GetFileSystemEntries(appTemlPath + "/Game"))
+                foreach (string dgfse in Directory.GetFileSystemEntries(appTemlPath + $"/{name}"))
                 {
                     FileAttributes attributes = File.GetAttributes(dgfse);
                     DirectoryInfo dirInf = new DirectoryInfo(dgfse);
                     FileInfo fileInf = new FileInfo(dgfse);
-                    if (Directory.Exists(@"Game/") == false)
+                    if (!Directory.Exists(appGamePath))
                     {
-                        Directory.CreateDirectory("Game");
+                        Directory.CreateDirectory(appGamePath);
                     }
                     if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
                     {
-                        if (Directory.Exists(@"Game/" + dirInf.Name) == true)
+                        if (Directory.Exists(appGamePath + dirInf.Name))
                         {
-                            Directory.Delete(@"Game/" + dirInf.Name, true);
+                            Directory.Delete(appGamePath + dirInf.Name, true);
                         }
-                        dirInf.MoveTo(@"Game/" + dirInf.Name);
+                        dirInf.MoveTo(appGamePath + dirInf.Name);
                     }
                     else if ((attributes & FileAttributes.Directory) != FileAttributes.Directory)
                     {
-                        if (File.Exists(@"Game/" + fileInf.Name) == true)
+                        if (File.Exists(appGamePath + fileInf.Name))
                         {
-                            File.Delete(@"Game/" + fileInf.Name);
+                            File.Delete(appGamePath + fileInf.Name);
                         }
-                        fileInf.MoveTo(@"Game/" + fileInf.Name);
+                        fileInf.MoveTo(appGamePath + fileInf.Name);
                     }
                 }
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
@@ -216,7 +242,7 @@ namespace LauncherLes1.View
                    DownloadAppState.Dispatcher.Invoke(() => Task.Run(() => {
                         processApp = new Process();
                         processApp.StartInfo.UseShellExecute = false;
-                        processApp.StartInfo.FileName = @"Game\The World of Quantrianism.exe";
+                        processApp.StartInfo.FileName = appGamePath + @".\Defender Rat.exe";
                         processApp.StartInfo.Arguments = ArgumentsAppString;
                         processApp.Start();
                         idProcessApp = processApp.Id;
@@ -240,7 +266,7 @@ namespace LauncherLes1.View
         private void ButtonLaunchGame(object sender, RoutedEventArgs e)
         {
             if (LaunchGameButton.Content.ToString() == "Установить") {
-                if (Directory.Exists(@"Game/") == false)
+                if (!Directory.Exists(appGamePath))
                 {
                     ServerDownloadChacheGameAsync();
                 }
@@ -250,7 +276,7 @@ namespace LauncherLes1.View
                 {
                     processApp = new Process();
                     processApp.StartInfo.UseShellExecute = false;
-                    processApp.StartInfo.FileName = @"Game\The World of Quantrianism.exe";
+                    processApp.StartInfo.FileName = appGamePath + @".\Defender Rat.exe";
                     processApp.StartInfo.Arguments = ArgumentsAppString;
                     processApp.Start();
                     idProcessApp = processApp.Id;
@@ -295,7 +321,7 @@ namespace LauncherLes1.View
         #region Menu
         private bool ComboBoxChooseGameInLauncherHandle = true;
 
-        private void ComboBoxChooseGameInLauncher_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ComboBoxChooseGameInLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ComboBoxChooseGameInLauncherHandle) ComboBoxChooseGameInLauncher_Handle();
             ComboBoxChooseGameInLauncherHandle = true;
@@ -318,7 +344,7 @@ namespace LauncherLes1.View
                         Process.Start(new ProcessStartInfo
                         {
                             FileName = "explorer.exe",
-                            Arguments = filePath,
+                            Arguments = $@"/{name}",
                             UseShellExecute = true
                         });
                     }
@@ -328,15 +354,16 @@ namespace LauncherLes1.View
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 1:
-                    CreateIconClass.CreateShortcut();
+                    CreateIconClass.CreateShortcut(name);
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 2:
-                    if (Directory.Exists(@"Game/") == true && appIsStarting == false)
+                    if (Directory.Exists(appGamePath) == true && appIsStarting == false)
                     {
                         try
                         {
-                            Directory.Delete(@"Game/", recursive: true);                            DownloadAppState.Text = "Статус: " + "Игра удалена";
+                            Directory.Delete(appGamePath, recursive: true);
+                            DownloadAppState.Text = "Статус: " + "Игра удалена";
                         }
                         catch (Exception ex) {
                             MessageBox.Show($"Ошибка у вас игра запущена: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
