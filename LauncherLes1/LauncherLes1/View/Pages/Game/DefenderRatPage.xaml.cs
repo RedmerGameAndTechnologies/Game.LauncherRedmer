@@ -1,7 +1,6 @@
 ﻿using LauncherLes1.View.Resources.Script;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
@@ -11,8 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace LauncherLes1.View

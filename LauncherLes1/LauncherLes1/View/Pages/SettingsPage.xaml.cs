@@ -2,15 +2,10 @@
 using LauncherLes1.View.Resources.Script;
 using LauncherLes1.View.Windows;
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using System.Xml.Linq;
 
 namespace LauncherLes1.View.Pages
 {
@@ -41,7 +36,7 @@ namespace LauncherLes1.View.Pages
         {
             if (Internet.connect())
             {
-                string readver = await HttpResponse("https://pastebin.com/raw/dem4T7Xp");
+                string readver = await HttpsClientClass.HttpResponse("https://pastebin.com/raw/dem4T7Xp");
 
                 readver = readver.Replace(".", ".");
                 curver = curver.Replace(".", ".");
@@ -107,15 +102,6 @@ namespace LauncherLes1.View.Pages
                 ConfirmUpdate = new ConfirmUpdateWindow();
                 isActiveUpdateLauncherWindow = true;
                 ConfirmUpdate.Show();
-            }
-        }
-
-        async Task<string> HttpResponse(string line)
-        {
-            using (var net = new HttpClient())
-            {
-                var response = await net.GetAsync(line);
-                return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
             }
         }
 

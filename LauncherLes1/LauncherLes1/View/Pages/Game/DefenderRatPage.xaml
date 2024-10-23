@@ -10,11 +10,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="500*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+        <Image Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
                Stretch="Fill" Source="/View/Resources/Background/Png/Defender Rat.png"/>
+        <Label Content="Версия игры: ??" FontFamily="{StaticResource Rubik-Bold}" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="830,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Grid Grid.Row="2">
             <Button Style="{DynamicResource ButtonDownloadGame}" Name="LaunchGameButton" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonLaunchGame" Height="40" Width="120" Margin="252,0,0,0"/>
             <ComboBox x:Name="ComboBoxChooseGameInLauncher" SelectionChanged="ComboBoxChooseGameInLauncher_SelectionChanged" DropDownClosed="ComboBoxChooseGameInLauncher_DropDownClosed" Width="20" Height="37" IsEditable="True" IsEnabled="True" BorderThickness="1" ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True" Stylus.IsFlicksEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="377,2,603,12">
