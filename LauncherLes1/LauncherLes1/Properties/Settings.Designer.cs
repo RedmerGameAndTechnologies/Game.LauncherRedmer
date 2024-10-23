@@ -46,5 +46,17 @@ namespace LauncherLes1.Properties {
                 this["isRunTheGameImmediatelyAfterInstallingIt"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float outputType {
+            get {
+                return ((float)(this["outputType"]));
+            }
+            set {
+                this["outputType"] = value;
+            }
+        }
     }
 }

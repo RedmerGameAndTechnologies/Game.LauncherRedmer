@@ -1,12 +1,16 @@
 ﻿using CheckConnectInternet;
+using LauncherLes1.View.Resources.Script;
 using LauncherLes1.View.Windows;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Xml.Linq;
 
 namespace LauncherLes1.View.Pages
 {
@@ -114,5 +118,41 @@ namespace LauncherLes1.View.Pages
                 return response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
             }
         }
+
+        #region Menu
+        private bool ComboBoxChooseGameInLauncherHandle = true;
+
+        private void ComboBoxChooseSettings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxChooseGameInLauncherHandle) ComboBoxChooseGameInLauncher_Handle();
+            ComboBoxChooseGameInLauncherHandle = true;
+        }
+
+        private void ComboBoxChooseSettings_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox ComboBoxChooseGameInLauncher = sender as ComboBox;
+            ComboBoxChooseGameInLauncherHandle = !ComboBoxChooseGameInLauncher.IsDropDownOpen;
+            ComboBoxChooseGameInLauncher_Handle();
+        }
+
+        private void ComboBoxChooseGameInLauncher_Handle()
+        {
+            switch (ComboBoxChooseGameInLauncher.SelectedIndex)
+            {
+                case 0:
+                    Properties.Settings.Default.outputType = 0;
+                    ComboBoxChooseGameInLauncher.SelectedIndex = -1;
+                    break;
+                case 1:
+                    Properties.Settings.Default.outputType = 1;
+                    ComboBoxChooseGameInLauncher.SelectedIndex = -1;
+                    break;
+                case 2:
+                    Properties.Settings.Default.outputType = 2;
+                    ComboBoxChooseGameInLauncher.SelectedIndex = -1;
+                    break;
+            }
+        }
+        #endregion
     }
 }

@@ -303,7 +303,23 @@ namespace LauncherLes1.View
         #region ProgresBarDownloadGame
         private void ProgressMessageHandler_HttpReceiveProgress(object sender, HttpProgressEventArgs e)
         {
-            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Процесс установки: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) );
+            string message;
+
+            switch (Properties.Settings.Default.outputType) {
+                case 0:
+                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
+                    break;
+                case 1:
+                    message = "Процесс установки: " + e.ProgressPercentage + "%";
+                    break;
+                case 2:
+                    message = "Процесс установки: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
+                    break;
+                default:
+                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
+                    break;
+            }
+            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = message);
             ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = e.ProgressPercentage);
         }
         #endregion
