@@ -19,7 +19,7 @@
     <Window.Clip>
         <RectangleGeometry Rect="0,0,1000,600" RadiusX="15" RadiusY="15"/>
     </Window.Clip>
-    
+
     <Border Style="{StaticResource WindowBorderStyle}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -46,12 +46,12 @@
                         <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="Наш дискорд" Click="Discord_Click"/>
                     </StackPanel>
                 </Border>
-                <Button Click="Close" HorizontalAlignment="Right" VerticalAlignment="Top" BorderBrush="Transparent" Height="10" Width="10" Margin="0,10,10,0">
+                <Button Style="{DynamicResource ButtonsTopSliderBarExitCollpase}" Click="Close" Margin="0,10,10,0">
                     <Button.Background>
-                        <ImageBrush ImageSource="/View/Resources/Icons/Png/closeProject.png"/>
+                        <ImageBrush ImageSource="/View/Windows/closeProject.png"/>
                     </Button.Background>
                 </Button>
-                <Button Click="Collapse" HorizontalAlignment="Right" VerticalAlignment="Top" BorderBrush="Transparent" Height="10" Width="10" Margin="0,10,20,0">
+                <Button Style="{DynamicResource ButtonsTopSliderBarExitCollpase}" Click="Collapse" Margin="0,10,35,0">
                     <Button.Background>
                         <ImageBrush ImageSource="/View/Resources/Icons/Png/collapseProject.png"/>
                     </Button.Background>
