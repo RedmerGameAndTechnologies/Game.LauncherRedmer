@@ -41,6 +41,8 @@
   <ItemGroup>
     <None Remove="View\Resources\Fonts\Rubik.ttf" />
     <None Remove="View\Resources\Fonts\RubikBold.ttf" />
+    <None Remove="View\Resources\Icons\Png\closeProject.png" />
+    <None Remove="View\Resources\Icons\Png\collapseProject.png" />
     <None Remove="View\Resources\Icons\Png\StopProccesButton.png" />
   </ItemGroup>
   <ItemGroup>
@@ -61,10 +63,18 @@
     <Resource Include="View\Resources\Fonts\RubikBold.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="View\Resources\Icons\Png\Open.png" />
+    <Resource Include="View\Resources\Icons\Png\closeProject.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Icons\Png\collapseProject.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Icons\Png\OpenPanelSlide.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\Icons\Png\Close.png" />
+    <Resource Include="View\Resources\Icons\Png\HidePanelSlide.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\IconsGame\Png\Defender Rat.png" />
@@ -105,6 +115,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" />
     <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />

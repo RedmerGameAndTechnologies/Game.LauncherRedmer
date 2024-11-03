@@ -77,5 +77,20 @@ namespace LauncherLes1.View
             }
         }
         #endregion
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Collapse(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void TaskbarIcon_TrayLeftMouseDown(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Normal;
+        }
     }
 }

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LauncherLes1"
         xmlns:vm="clr-namespace:LauncherLes1.ViewModel"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         AllowsTransparency="True"
-        Title="MainWindow" Height="600" Width="1000" MaxHeight="600" MaxWidth="1000"
+        Title="MainWindow" Height="600" Width="1000" MaxHeight="1200" MaxWidth="2000"
         MinHeight="600" MinWidth="1000"
         WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
 
@@ -31,6 +32,7 @@
             </Grid.RowDefinitions>
             <Frame Name="MainFrame" Grid.ColumnSpan="10" Grid.RowSpan="10" NavigationUIVisibility="Hidden" Content="{Binding CurPage}"/>
             <Grid Name="TopMenu" Grid.Row="0" Grid.ColumnSpan="2">
+                <tb:TaskbarIcon Visibility="Visible" TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown" ToolTipText="App Redmer Launcher" IconSource="/View/Resources/Icons/LogoProject.ico"/>
                 <Image Source="/View/Resources/Icons/Png/Logo.png" Width="40" HorizontalAlignment="Left" Margin="20,0,0,0"/>
                 <Border Background="Black" Opacity="0.1">
                     <Border.Effect>
@@ -44,6 +46,16 @@
                         <Button Template="{StaticResource ResourceKey=TopMenuButtons}" Content="Наш дискорд" Click="Discord_Click"/>
                     </StackPanel>
                 </Border>
+                <Button Click="Close" HorizontalAlignment="Right" VerticalAlignment="Top" BorderBrush="Transparent" Height="10" Width="10" Margin="0,10,10,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/Resources/Icons/Png/closeProject.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Click="Collapse" HorizontalAlignment="Right" VerticalAlignment="Top" BorderBrush="Transparent" Height="10" Width="10" Margin="0,10,20,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/Resources/Icons/Png/collapseProject.png"/>
+                    </Button.Background>
+                </Button>
             </Grid>
             <Grid Name="SlideMenu" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
                 <Grid.Style>
@@ -76,13 +88,13 @@
                             <Image>
                                 <Image.Style>
                                     <Style TargetType="Image">
-                                        <Setter Property="Source" Value="/View/Resources/Icons/Png/Close.png"/>
+                                        <Setter Property="Source" Value="/View/Resources/Icons/Png/HidePanelSlide.png"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource
                                             Mode=FindAncestor,
                                             AncestorType={x:Type ToggleButton}},
                                             Path = IsChecked}" Value="true">
-                                                <Setter Property="Source" Value="/View/Resources/Icons/Png/Open.png"/>
+                                                <Setter Property="Source" Value="/View/Resources/Icons/Png/OpenPanelSlide.png"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
