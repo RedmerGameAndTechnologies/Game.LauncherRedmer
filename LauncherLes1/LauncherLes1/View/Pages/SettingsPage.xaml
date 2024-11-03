@@ -23,12 +23,12 @@
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="22" Content="Доп настройки" Margin="400,70,0,0"/>
             <CheckBox Name="CheckBoxInstallNow" Content="Запускать игру сразу после установки" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Height="15" Foreground="White" Unchecked="CheckBoxInstallNow_Unchecked" Checked="CheckBoxInstallNow_Cecked" Margin="377,118,0,0"/>
             <Grid>
-                <ComboBox x:Name="ComboBoxChooseGameInLauncher" SelectionChanged="ComboBoxChooseSettings_SelectionChanged" DropDownClosed="ComboBoxChooseSettings_DropDownClosed" Height="37" IsEditable="True" IsEnabled="True" ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True" Stylus.IsFlicksEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="377,148,533,345">
+                <ComboBox x:Name="ComboBoxChooseGameInLauncher" SelectionChanged="ComboBoxChooseSettings_SelectionChanged" DropDownClosed="ComboBoxChooseSettings_DropDownClosed" Height="37" IsEditable="True" ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True" Stylus.IsFlicksEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="377,148,533,345">
                     <ComboBoxItem>
-                        <TextBlock x:Name="one" Text="Полный вывод" />
+                        <TextBlock Name="one" Text="Полный вывод" />
                     </ComboBoxItem>
                     <ComboBoxItem>
-                        <TextBlock x:Name="two" Text="Процентный в вывод"/>
+                        <TextBlock Name="two" Text="Процентный в вывод"/>
                     </ComboBoxItem>
                     <ComboBoxItem>
                         <TextBlock Name="free" Text="Подробный в вывод"/>
