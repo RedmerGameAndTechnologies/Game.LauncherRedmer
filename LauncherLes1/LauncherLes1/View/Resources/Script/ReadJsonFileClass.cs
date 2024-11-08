@@ -13,6 +13,6 @@ namespace LauncherLes1.View.Resources.Script
         string download { get; }
 
         [JsonProperty("backround")]
-        string backround { get; }
+        string? backround { get; }
     }
 }
