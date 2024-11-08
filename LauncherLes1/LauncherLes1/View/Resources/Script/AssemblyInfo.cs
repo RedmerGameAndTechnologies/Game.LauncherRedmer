@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 
 [assembly: AssemblyTitle("LauncherRemer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This launcher from Redmer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Redmer")]
 [assembly: AssemblyProduct("LauncherRemer")]
