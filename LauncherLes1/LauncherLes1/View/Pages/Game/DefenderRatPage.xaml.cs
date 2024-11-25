@@ -17,6 +17,8 @@ namespace LauncherLes1.View
     public partial class OpenDefenderRatPage : Page
     {
         private readonly static string name = "DefenderRat";
+        private readonly string UrlDownloadGame = "https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/EWSdZyEUQgtjVA";
+        private readonly string UrlDownloadVersionGame = "--";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
         private readonly string appGamePath = $@"{name}/";
@@ -161,7 +163,7 @@ namespace LauncherLes1.View
                 CancellationToken cancellationToken = cancelTokenSource.Token;
                 Task downloadFileHTTP = Task.Run(async () =>
                 {
-                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage() { Method = HttpMethod.Get, RequestUri = new Uri("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/EWSdZyEUQgtjVA") };
+                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage() { Method = HttpMethod.Get, RequestUri = new Uri(UrlDownloadGame) };
                     ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler() { AllowAutoRedirect = true });
                     httpClient = new HttpClient(progressMessageHandler) { Timeout = Timeout.InfiniteTimeSpan };
                     stopWatch.Start();

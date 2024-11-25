@@ -44,6 +44,9 @@
     <None Remove="View\Resources\Icons\Png\closeProject.png" />
     <None Remove="View\Resources\Icons\Png\collapseProject.png" />
     <None Remove="View\Resources\Icons\Png\StopProccesButton.png" />
+    <None Remove="View\Resources\Icons\Png\systeams\linux.png" />
+    <None Remove="View\Resources\Icons\Png\systeams\mac.png" />
+    <None Remove="View\Resources\Icons\Png\systeams\windows.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -100,6 +103,15 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\Resources\Icons\Png\StopProccesButton.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Icons\Png\systeams\linux.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Icons\Png\systeams\mac.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Icons\Png\systeams\windows.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Content Include="View\Resources\Icons\Svg\LogoProject.svg" />
