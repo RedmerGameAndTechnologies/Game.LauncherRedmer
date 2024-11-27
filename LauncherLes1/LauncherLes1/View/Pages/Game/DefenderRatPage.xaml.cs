@@ -31,7 +31,6 @@ namespace LauncherLes1.View
         private DispatcherTimer dispatcherTimer;
         private Stopwatch stopWatch = new Stopwatch();
         public static string ArgumentsAppString { get; set; }
-        public static int ArgumentsAppSpeedDownload { get; set; } = 81920;
 
         WebClient clientDownloadApp = new WebClient();
         HttpClient httpClient = new HttpClient();
@@ -172,7 +171,7 @@ namespace LauncherLes1.View
                     Stream fileStreamServer = new FileStream(zipPath, FileMode.OpenOrCreate, FileAccess.Write);
                     try
                     {
-                        await streamFileServer.CopyToAsync(fileStreamServer, ArgumentsAppSpeedDownload, cancellationToken);
+                        await streamFileServer.CopyToAsync(fileStreamServer, Properties.Settings.Default.targetSpeedInKb, cancellationToken);
                         cancelTokenSource.Dispose();
                         streamFileServer.Dispose();
                         fileStreamServer.Dispose();
@@ -306,7 +305,7 @@ namespace LauncherLes1.View
 
             switch (Properties.Settings.Default.outputType) {
                 case 0:
-                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
+                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Осталось: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) + " Скорость скачивание: " + Properties.Settings.Default.targetSpeedInKb + "bytes";
                     break;
                 case 1:
                     message = "Процесс установки: " + e.ProgressPercentage + "%";
@@ -315,7 +314,7 @@ namespace LauncherLes1.View
                     message = "Процесс установки: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
                     break;
                 default:
-                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Скорость скачивание: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
+                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Осталось: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) + "Скорость скачивание: " + Properties.Settings.Default.targetSpeedInKb + "bytes";
                     break;
             }
             DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = message);

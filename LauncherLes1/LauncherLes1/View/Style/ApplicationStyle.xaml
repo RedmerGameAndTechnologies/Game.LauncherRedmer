@@ -38,6 +38,8 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" Value="Wheat"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Opacity" Value="0.6"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

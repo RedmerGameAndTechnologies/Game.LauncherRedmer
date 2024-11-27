@@ -58,5 +58,17 @@ namespace LauncherLes1.Properties {
                 this["outputType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("81920")]
+        public int targetSpeedInKb {
+            get {
+                return ((int)(this["targetSpeedInKb"]));
+            }
+            set {
+                this["targetSpeedInKb"] = value;
+            }
+        }
     }
 }

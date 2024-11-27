@@ -35,6 +35,8 @@
                     </ComboBoxItem>
                 </ComboBox>
                 <Label Content="Вид загрузки" Foreground="White" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="467,148,0,0" VerticalAlignment="Top" Height="37" Width="150"/>
+                <TextBox Name="TextBoxArgumentsSpeedDownload" Margin="658,154,31,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Background="#FF031719" BorderBrush="#FF001144" Foreground="#FF39B2FF"/>
+                <TextBlock Name="TextShowDownloadSpeedLimit" Margin="658,126,20,0" TextWrapping="Wrap" Text="Download speed limit (default: 81920 bytes), min: 1 bytes" VerticalAlignment="Top" Height="22" Foreground="#FFA5F1FF" FontSize="14"/>
             </Grid>
 
 

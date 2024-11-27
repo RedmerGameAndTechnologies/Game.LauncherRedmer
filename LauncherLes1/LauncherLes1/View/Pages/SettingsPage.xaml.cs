@@ -5,6 +5,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace LauncherLes1.View.Pages
@@ -18,11 +19,16 @@ namespace LauncherLes1.View.Pages
         private DispatcherTimer dispatcherTimer;
         Window ConfirmUpdate;
 
+        private int intArgumentsSpeedDownload;
+
         public SettingsPage()
         {
             InitializeComponent();
             UpdateUI();
             StartCheck_CheckBoxAutoUpdateLauncher();
+
+            TextShowDownloadSpeedLimit.Text = "Скорость скачивание (min: " + Properties.Settings.Default.targetSpeedInKb + " bytes)";
+            TextBoxArgumentsSpeedDownload.Text = Properties.Settings.Default.targetSpeedInKb.ToString();
         }
 
         private void UpdateUI()
@@ -32,6 +38,7 @@ namespace LauncherLes1.View.Pages
             dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
             dispatcherTimer.Start();
         }
+
         public async void BackgroundUIFunction(object sender, EventArgs ea)
         {
             if (Internet.connect())
@@ -52,6 +59,12 @@ namespace LauncherLes1.View.Pages
                     DownloadUpdate.Visibility = Visibility.Hidden;
                 }
             }
+
+            if (int.TryParse(TextBoxArgumentsSpeedDownload.Text, out intArgumentsSpeedDownload) && intArgumentsSpeedDownload >= 1) {
+                Properties.Settings.Default.targetSpeedInKb = intArgumentsSpeedDownload;
+                TextShowDownloadSpeedLimit.Text = "Download speed limit (min: " + Properties.Settings.Default.targetSpeedInKb + " bytes)";
+            }
+            Properties.Settings.Default.Save();
         }
 
         private void StartCheck_CheckBoxAutoUpdateLauncher()
