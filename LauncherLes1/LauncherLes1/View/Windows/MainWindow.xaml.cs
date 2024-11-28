@@ -25,17 +25,7 @@ namespace LauncherLes1.View
             AutoUpdateLauncher();
             UpdateUI();
 
-            if(test)
-                StartWarningAnimation();
-        }
-
-        private async void StartWarningAnimation() {
-            Warning.Opacity = 0;
-            while (Warning.Opacity < 1)
-            {
-                Warning.Opacity += 0.1;
-                await Task.Delay(100);
-            }
+            if (test) StartWarningAnimation();
         }
 
         private void UpdateUI()
@@ -55,7 +45,20 @@ namespace LauncherLes1.View
                     this.Hide();
                     ErrorConnectInternetWindow errorConnectInternetWindow = new ErrorConnectInternetWindow();
                     errorConnectInternetWindow.Show();
+                    StartWarningAnimation();
                 }
+                else Warning.Opacity = 0;
+            }
+
+        }
+
+        private async void StartWarningAnimation()
+        {
+            Warning.Opacity = 0;
+            while (Warning.Opacity < 1)
+            {
+                Warning.Opacity += 0.1;
+                await Task.Delay(100);
             }
         }
 

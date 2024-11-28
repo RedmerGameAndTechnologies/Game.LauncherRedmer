@@ -1,4 +1,5 @@
-﻿using LauncherLes1.View.Resources.Script;
+﻿using CheckConnectInternet;
+using LauncherLes1.View.Resources.Script;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -149,7 +150,8 @@ namespace LauncherLes1.View
         public void ServerDownloadChacheGameAsync()
         {
             isFileDownloadingNow = true;
-            if (!string.IsNullOrEmpty(zipPath) && File.Exists(zipPath)) {
+            if (!string.IsNullOrEmpty(zipPath) && File.Exists(zipPath))
+            {
                 File.Delete(zipPath);
             }
             try
@@ -189,67 +191,69 @@ namespace LauncherLes1.View
                 }, cancellationToken);
                 downloadFileHTTP.ContinueWith(obj =>
                 {
-                DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Распаковка файлов...");
-                using (ZipArchive zipFileServer = ZipFile.OpenRead(zipPath))
-                {
-                        
+                    DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Распаковка файлов...");
+                    using (ZipArchive zipFileServer = ZipFile.OpenRead(zipPath))
+                    {
+
+                        ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
+                        int zipFilesCount = zipFileServer.Entries.Count;
+                        ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Maximum = zipFilesCount);
+                        foreach (var zip in zipFileServer.Entries)
+                        {
+                            if (isStartUnzipUpdateFileApp == true)
+                            {
+                                zip.Archive.ExtractToDirectory(appTemlPath);
+                                isStartUnzipUpdateFileApp = false;
+                                break;
+                            }
+                        }
+                        ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = zipFilesCount);
+                    }
+                    File.Delete(zipPath);
+                    foreach (string dgfse in Directory.GetFileSystemEntries(appTemlPath + $"/{name}"))
+                    {
+                        FileAttributes attributes = File.GetAttributes(dgfse);
+                        DirectoryInfo dirInf = new DirectoryInfo(dgfse);
+                        FileInfo fileInf = new FileInfo(dgfse);
+                        if (!Directory.Exists(appGamePath))
+                        {
+                            Directory.CreateDirectory(appGamePath);
+                        }
+                        if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
+                        {
+                            if (Directory.Exists(appGamePath + dirInf.Name))
+                            {
+                                Directory.Delete(appGamePath + dirInf.Name, true);
+                            }
+                            dirInf.MoveTo(appGamePath + dirInf.Name);
+                        }
+                        else if ((attributes & FileAttributes.Directory) != FileAttributes.Directory)
+                        {
+                            if (File.Exists(appGamePath + fileInf.Name))
+                            {
+                                File.Delete(appGamePath + fileInf.Name);
+                            }
+                            fileInf.MoveTo(appGamePath + fileInf.Name);
+                        }
+                    }
+                    DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
+                    DownloadAppState.Dispatcher.Invoke(() => isFileDownloadingNow = false);
+                    if (Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt == true)
+                    {
+                        DownloadAppState.Dispatcher.Invoke(() => Task.Run(() =>
+                        {
+                            processApp = new Process();
+                            processApp.StartInfo.UseShellExecute = false;
+                            processApp.StartInfo.FileName = appGamePath + @".\Defender Rat.exe";
+                            processApp.StartInfo.Arguments = ArgumentsAppString;
+                            processApp.Start();
+                            idProcessApp = processApp.Id;
+                        }));
+                    }
+                    ComboBoxChooseGameInLauncher.Dispatcher.Invoke(() => ComboBoxChooseGameInLauncher.IsEnabled = true);
+                    LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
                     ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
-                    int zipFilesCount = zipFileServer.Entries.Count;
-                    ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Maximum = zipFilesCount);
-                    foreach (var zip in zipFileServer.Entries)
-                    {
-                        if (isStartUnzipUpdateFileApp == true)
-                        {
-                            zip.Archive.ExtractToDirectory(appTemlPath);
-                            isStartUnzipUpdateFileApp = false;
-                            break;
-                        }
-                    }
-                    ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = zipFilesCount);
-                }
-                File.Delete(zipPath);
-                foreach (string dgfse in Directory.GetFileSystemEntries(appTemlPath + $"/{name}"))
-                {
-                    FileAttributes attributes = File.GetAttributes(dgfse);
-                    DirectoryInfo dirInf = new DirectoryInfo(dgfse);
-                    FileInfo fileInf = new FileInfo(dgfse);
-                    if (!Directory.Exists(appGamePath))
-                    {
-                        Directory.CreateDirectory(appGamePath);
-                    }
-                    if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
-                    {
-                        if (Directory.Exists(appGamePath + dirInf.Name))
-                        {
-                            Directory.Delete(appGamePath + dirInf.Name, true);
-                        }
-                        dirInf.MoveTo(appGamePath + dirInf.Name);
-                    }
-                    else if ((attributes & FileAttributes.Directory) != FileAttributes.Directory)
-                    {
-                        if (File.Exists(appGamePath + fileInf.Name))
-                        {
-                            File.Delete(appGamePath + fileInf.Name);
-                        }
-                        fileInf.MoveTo(appGamePath + fileInf.Name);
-                    }
-                }
-                DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
-                DownloadAppState.Dispatcher.Invoke(() => isFileDownloadingNow = false);
-                if (Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt == true) {
-                   DownloadAppState.Dispatcher.Invoke(() => Task.Run(() => {
-                        processApp = new Process();
-                        processApp.StartInfo.UseShellExecute = false;
-                        processApp.StartInfo.FileName = appGamePath + @".\Defender Rat.exe";
-                        processApp.StartInfo.Arguments = ArgumentsAppString;
-                        processApp.Start();
-                        idProcessApp = processApp.Id;
-                   }));
-                }
-                ComboBoxChooseGameInLauncher.Dispatcher.Invoke(() => ComboBoxChooseGameInLauncher.IsEnabled = true);
-                LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
-                ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
-                return;
+                    return;
                 }, cancellationToken);
             }
             catch (Exception e)
