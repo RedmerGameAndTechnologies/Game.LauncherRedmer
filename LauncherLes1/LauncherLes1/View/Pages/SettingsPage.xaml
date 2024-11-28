@@ -39,7 +39,6 @@
                 <TextBlock Name="TextShowDownloadSpeedLimit" Margin="658,126,20,0" TextWrapping="Wrap" Text="Download speed limit (default: 81920 bytes), min: 1 bytes" VerticalAlignment="Top" Height="22" Foreground="#FFA5F1FF" FontSize="14"/>
             </Grid>
 
-
             <Grid Height="150" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid>
                     <Border Height="150" Width="500" CornerRadius="15" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#383838" Opacity="0.8"/>

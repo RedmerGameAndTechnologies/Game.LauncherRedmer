@@ -16,6 +16,7 @@ namespace LauncherLes1.View.Pages
         {
             this.Hide();
             MainWindow.isActiveerrorConnectInternetWindow = true;
+            MainWindow.test = true;
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
         }

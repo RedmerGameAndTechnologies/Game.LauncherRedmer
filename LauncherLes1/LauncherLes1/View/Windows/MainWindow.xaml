@@ -31,6 +31,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Frame Name="MainFrame" Grid.ColumnSpan="10" Grid.RowSpan="10" NavigationUIVisibility="Hidden" Content="{Binding CurPage}"/>
+            <Image Source="/View/Resources/Icons/Png/Warning.png" Name="Warning" Opacity="0" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Margin="0,10,10,456" Grid.Row="1"/>
             <Grid Name="TopMenu" Grid.Row="0" Grid.ColumnSpan="2">
                 <tb:TaskbarIcon Visibility="Visible" TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown" ToolTipText="App Redmer Launcher" IconSource="/View/Resources/Icons/LogoProject.ico"/>
                 <Image Source="/View/Resources/Icons/Png/Logo.png" Width="40" HorizontalAlignment="Left" Margin="20,0,0,0"/>

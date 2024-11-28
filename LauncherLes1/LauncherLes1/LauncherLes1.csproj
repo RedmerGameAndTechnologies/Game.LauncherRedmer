@@ -47,6 +47,7 @@
     <None Remove="View\Resources\Icons\Png\systeams\linux.png" />
     <None Remove="View\Resources\Icons\Png\systeams\mac.png" />
     <None Remove="View\Resources\Icons\Png\systeams\windows.png" />
+    <None Remove="View\Resources\Icons\Png\Warning.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -112,6 +113,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\Resources\Icons\Png\systeams\windows.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Icons\Png\Warning.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Content Include="View\Resources\Icons\Svg\LogoProject.svg" />

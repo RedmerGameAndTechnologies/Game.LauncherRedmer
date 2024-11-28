@@ -5,7 +5,6 @@ using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace LauncherLes1.View.Pages

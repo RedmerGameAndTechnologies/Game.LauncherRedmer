@@ -3,6 +3,7 @@ using LauncherLes1.View.Pages;
 using LauncherLes1.View.Windows;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -14,6 +15,7 @@ namespace LauncherLes1.View
         private DispatcherTimer dispatcherTimer;
 
         public static bool isActiveerrorConnectInternetWindow { get; set; } = false;
+        public static bool test { get; set; }
 
         Window ConfirmUpdate;
 
@@ -22,6 +24,18 @@ namespace LauncherLes1.View
             InitializeComponent();
             AutoUpdateLauncher();
             UpdateUI();
+
+            if(test)
+                StartWarningAnimation();
+        }
+
+        private async void StartWarningAnimation() {
+            Warning.Opacity = 0;
+            while (Warning.Opacity < 1)
+            {
+                Warning.Opacity += 0.1;
+                await Task.Delay(100);
+            }
         }
 
         private void UpdateUI()
