@@ -22,7 +22,7 @@
 
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="22" Content="Доп настройки" Margin="400,70,0,0"/>
             <CheckBox Name="CheckBoxInstallNow" Content="Запускать игру сразу после установки" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Height="15" Foreground="White" Unchecked="CheckBoxInstallNow_Unchecked" Checked="CheckBoxInstallNow_Cecked" Margin="377,120,0,0"/>
-            <TextBox Name="TextBoxArgumentsSpeedDownload" Margin="660,155,31,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Background="White" BorderBrush="Black" Foreground="#FF39B2FF"/>
+            <TextBox Name="TextBoxArgumentsSpeedDownload" Margin="660,155,31,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Background="White" BorderBrush="Black" Foreground="#FF39B2FF" PreviewTextInput="TextBoxArgumentsSpeedDownload_PreviewTextInput"/>
             <TextBlock Name="TextShowDownloadSpeedLimit" Margin="660,118,31,0" TextWrapping="Wrap" Text="Download speed limit (min: ??? bytes)" VerticalAlignment="Top" Height="22" Foreground="White" FontSize="14"/>
             <Grid>
                 <ComboBox x:Name="ComboBoxChooseGameInLauncher" SelectionChanged="ComboBoxChooseSettings_SelectionChanged" DropDownClosed="ComboBoxChooseSettings_DropDownClosed" Height="37" IsEditable="True" ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True" Stylus.IsFlicksEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="377,150,533,345">

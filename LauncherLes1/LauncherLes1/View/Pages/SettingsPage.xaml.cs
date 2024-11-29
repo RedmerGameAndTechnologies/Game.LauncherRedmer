@@ -152,5 +152,10 @@ namespace LauncherLes1.View.Pages
             }
         }
         #endregion
+
+        private void TextBoxArgumentsSpeedDownload_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
     }
 }
