@@ -21,9 +21,11 @@
             <Label FontFamily="{StaticResource Rubik}" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25">Cтраница настроек</Label>
 
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="22" Content="Доп настройки" Margin="400,70,0,0"/>
-            <CheckBox Name="CheckBoxInstallNow" Content="Запускать игру сразу после установки" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Height="15" Foreground="White" Unchecked="CheckBoxInstallNow_Unchecked" Checked="CheckBoxInstallNow_Cecked" Margin="377,118,0,0"/>
+            <CheckBox Name="CheckBoxInstallNow" Content="Запускать игру сразу после установки" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Height="15" Foreground="White" Unchecked="CheckBoxInstallNow_Unchecked" Checked="CheckBoxInstallNow_Cecked" Margin="377,120,0,0"/>
+            <TextBox Name="TextBoxArgumentsSpeedDownload" Margin="660,155,31,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Background="White" BorderBrush="Black" Foreground="#FF39B2FF"/>
+            <TextBlock Name="TextShowDownloadSpeedLimit" Margin="660,118,31,0" TextWrapping="Wrap" Text="Download speed limit (min: ??? bytes)" VerticalAlignment="Top" Height="22" Foreground="White" FontSize="14"/>
             <Grid>
-                <ComboBox x:Name="ComboBoxChooseGameInLauncher" SelectionChanged="ComboBoxChooseSettings_SelectionChanged" DropDownClosed="ComboBoxChooseSettings_DropDownClosed" Height="37" IsEditable="True" ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True" Stylus.IsFlicksEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="377,148,533,345">
+                <ComboBox x:Name="ComboBoxChooseGameInLauncher" SelectionChanged="ComboBoxChooseSettings_SelectionChanged" DropDownClosed="ComboBoxChooseSettings_DropDownClosed" Height="37" IsEditable="True" ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True" Stylus.IsFlicksEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="377,150,533,345">
                     <ComboBoxItem>
                         <TextBlock Name="one" Text="Полный вывод" />
                     </ComboBoxItem>
@@ -34,9 +36,7 @@
                         <TextBlock Name="free" Text="Подробный в вывод"/>
                     </ComboBoxItem>
                 </ComboBox>
-                <Label Content="Вид загрузки" Foreground="White" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="467,148,0,0" VerticalAlignment="Top" Height="37" Width="150"/>
-                <TextBox Name="TextBoxArgumentsSpeedDownload" Margin="658,154,31,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Background="#FF031719" BorderBrush="#FF001144" Foreground="#FF39B2FF"/>
-                <TextBlock Name="TextShowDownloadSpeedLimit" Margin="658,126,20,0" TextWrapping="Wrap" Text="Download speed limit (default: 81920 bytes), min: 1 bytes" VerticalAlignment="Top" Height="22" Foreground="#FFA5F1FF" FontSize="14"/>
+                <Label Content="Вид загрузки" Foreground="White" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="467,150,0,0" VerticalAlignment="Top" Height="37" Width="150"/>
             </Grid>
 
             <Grid Height="150" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center">
