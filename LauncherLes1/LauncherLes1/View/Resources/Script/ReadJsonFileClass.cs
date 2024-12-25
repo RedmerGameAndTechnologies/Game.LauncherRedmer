@@ -3,9 +3,6 @@ namespace LauncherLes1.View.Resources.Script
 {
     class ReadJsonFileClass
     {
-        [JsonProperty("name")]
-        string name { get; }
-
         [JsonProperty("version")]
         int version { get; }
 
@@ -14,5 +11,11 @@ namespace LauncherLes1.View.Resources.Script
 
         [JsonProperty("backround")]
         string? backround { get; }
+
+        public ReadJsonFileClass(int version, string download, string? backround) {
+            version = version;
+            download = download;
+            backround = backround;
+        }
     }
 }

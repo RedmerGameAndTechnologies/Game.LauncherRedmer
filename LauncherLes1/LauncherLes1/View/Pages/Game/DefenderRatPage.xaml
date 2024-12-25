@@ -16,15 +16,19 @@
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
                Stretch="Fill" Source="/View/Resources/Background/Png/Defender Rat.png"/>
-        <Label Content="Версия игры: ??" FontFamily="{StaticResource Rubik-Bold}" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="830,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Name="versionGame" Content="Версия игры: ??" FontFamily="{StaticResource Rubik-Bold}" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="830,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Grid Grid.Row="2">
             <Grid Height="40" Width="120" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-650,0,0,0">
                 <Border BorderThickness="5,2,5,2" Background="#4a4848" CornerRadius="5" Opacity="0.8"/>
-                <Grid Background="Transparent" Width="120" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Image Source="/View/Resources/Icons/Png/systeams/windows.png" Width="30" Height="30" HorizontalAlignment="Left" Opacity="1" Margin="10,0,0,0"/>
-                    <Image Source="/View/Resources/Icons/Png/systeams/linux.png" Width="30" Height="32" HorizontalAlignment="Center" Opacity="1"/>
-                    <Image Source="/View/Resources/Icons/Png/systeams/mac.png" Width="30" Height="30" HorizontalAlignment="Right" Opacity="0.2" Margin="0,0,10,0"/>
-                    <Image Source="/View/Resources/Icons/Png/systeams/mac.png" Width="30" Height="30" HorizontalAlignment="Right" Opacity="0.2" Margin="0,0,10,0"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="/View/Resources/Icons/Png/systeams/windows.png" Width="30" Height="30" Opacity="1"/>
+                    <Image Grid.Column="1" Source="/View/Resources/Icons/Png/systeams/linux.png" Width="30" Height="32" Opacity="1"/>
+                    <Image Grid.Column="2" Source="/View/Resources/Icons/Png/systeams/mac.png" Width="30" Height="30" Opacity="0.2"/>
                 </Grid>
             </Grid>
             <Button Style="{DynamicResource ButtonDownloadGame}" Name="LaunchGameButton" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonLaunchGame" Height="40" Width="120" Margin="252,0,0,0"/>

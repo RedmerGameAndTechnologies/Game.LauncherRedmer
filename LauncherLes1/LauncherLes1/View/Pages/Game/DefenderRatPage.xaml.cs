@@ -1,5 +1,5 @@
-﻿using CheckConnectInternet;
-using LauncherLes1.View.Resources.Script;
+﻿using LauncherLes1.View.Resources.Script;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +11,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 
 namespace LauncherLes1.View
 {
@@ -19,7 +18,7 @@ namespace LauncherLes1.View
     {
         private readonly static string name = "DefenderRat";
         private readonly string UrlDownloadGame = "https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/EWSdZyEUQgtjVA";
-        private readonly string UrlDownloadVersionGame = "--";
+        private static readonly string updateJSONURL = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
         private readonly string appGamePath = $@"{name}/";
@@ -42,30 +41,29 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI.Update(BackgroundUIFunction, 0,0,2);
-            //ReadJsonFile();
         }
 
-/*        #region ReadJsonFile
-        private void ReadJsonFile()
-        {
-            using (HttpClient httpClient = new HttpClient())
+        #region ReadJsonFile
+        public void ReadJsonFile() {
+            static async Task Main(string[] args)
             {
-                try
+                using (HttpClient client = new HttpClient())
                 {
-                    httpClient.GetStringAsync("https://pastebin.com/raw/rv38asrb");
-                }
-                catch (HttpRequestException e) when (e.Message.Contains("404"))
-                {
-                    MessageBox.Show($"Файла нет на сервере: {e.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
+                    try
+                    {
+                        string json = await client.GetStringAsync(updateJSONURL);
+                        JObject data = JObject.Parse(json);
 
+                        string version = data["version"].ToString();
+                    }
+                    catch (HttpRequestException e) when (e.Message.Contains("404"))
+                    {
+                        Console.WriteLine("Ошибка: " + e.Message);
+                    }
+                }
             }
         }
-        #endregion*/
+        #endregion
 
         #region BACKGROUNDFUNC
         public void BackgroundUIFunction(object sender, EventArgs ea)
@@ -321,7 +319,7 @@ namespace LauncherLes1.View
                             DownloadAppState.Text = "Статус: " + "Игра удалена";
                         }
                         catch (Exception ex) {
-                            MessageBox.Show($"Ошибка у вас игра запущена: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show($"Ошибка, у вас игра запущена: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
 
                     }
