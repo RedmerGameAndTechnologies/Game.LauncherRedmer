@@ -23,16 +23,12 @@ namespace LauncherLes1.View.Windows
         public static string exenames = Path.GetFileName(sourcePath);
 
         public ConfirmUpdateWindow()
-        {
-            InitializeComponent();
-        }
+            => InitializeComponent();
 
         private void WindowMove(object sender, MouseButtonEventArgs e)
         {   
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
         }
 
         private void ButtonAllowUpdate(object sender, RoutedEventArgs e)

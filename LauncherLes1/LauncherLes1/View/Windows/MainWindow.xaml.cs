@@ -1,19 +1,16 @@
 ﻿using CheckConnectInternet;
 using LauncherLes1.View.Pages;
+using LauncherLes1.View.Resources.Script;
 using LauncherLes1.View.Windows;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace LauncherLes1.View
 {
     public partial class MainWindow : Window
     {
-        private DispatcherTimer dispatcherTimer;
-
         public static bool isActiveerrorConnectInternetWindow { get; set; } = false;
         public static bool test { get; set; }
 
@@ -23,17 +20,9 @@ namespace LauncherLes1.View
         {
             InitializeComponent();
             AutoUpdateLauncher();
-            UpdateUI();
+            UpdateUI.Update(BackgroundUIFunction, 0,0,5);
 
             if (test) StartWarningAnimation();
-        }
-
-        private void UpdateUI()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
-            dispatcherTimer.Start();
         }
 
         public void BackgroundUIFunction(object sender, EventArgs ea)
@@ -65,19 +54,7 @@ namespace LauncherLes1.View
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
-        }
-
-        private void Home(object sender, RoutedEventArgs e)
-        {
-            SlideMenu.Visibility = Visibility.Hidden;
-        }
-
-        private void Discord_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo("https://discord.gg/efEFJfEcXH") { UseShellExecute = true });
         }
 
         #region AutoUpdateLauncher
@@ -94,6 +71,11 @@ namespace LauncherLes1.View
             }
         }
         #endregion
+
+        private void Home(object sender, RoutedEventArgs e)
+        {
+            SlideMenu.Visibility = Visibility.Hidden;
+        }
 
         private void Close(object sender, RoutedEventArgs e)
         {

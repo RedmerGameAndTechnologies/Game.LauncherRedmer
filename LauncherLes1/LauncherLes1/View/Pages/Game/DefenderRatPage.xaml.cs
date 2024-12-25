@@ -29,7 +29,6 @@ namespace LauncherLes1.View
         private static bool isFileDownloadingNow = false;
         private Process processApp;
 
-        private DispatcherTimer dispatcherTimer;
         private Stopwatch stopWatch = new Stopwatch();
         public static string ArgumentsAppString { get; set; }
 
@@ -39,10 +38,10 @@ namespace LauncherLes1.View
         public OpenDefenderRatPage()
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExcepctionEventApp);
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Loges.ExcepctionEventApp);
 
             InitializeComponent();
-            UpdateUI();
+            UpdateUI.Update(BackgroundUIFunction, 0,0,2);
             //ReadJsonFile();
         }
 
@@ -67,14 +66,6 @@ namespace LauncherLes1.View
             }
         }
         #endregion*/
-
-        private void UpdateUI()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
-            dispatcherTimer.Start();
-        }
 
         #region BACKGROUNDFUNC
         public void BackgroundUIFunction(object sender, EventArgs ea)
@@ -117,30 +108,6 @@ namespace LauncherLes1.View
                         LaunchGameButton.Content = "Игра запущена";
                     }
                 }
-            }
-        }
-        #endregion
-
-        #region Loges
-        private static void ExcepctionEventApp(object sender, UnhandledExceptionEventArgs ueea)
-        {
-            Exception e = (Exception)ueea.ExceptionObject;
-            LoggingProcess("EXCEPTION" + e.Message.ToString());
-        }
-
-        private static void LoggingProcess(string s)
-        {
-            if (Directory.Exists(@"Log/") == false)
-            {
-                Directory.CreateDirectory(@"Log/");
-            }
-            DateTime now = DateTime.Now;
-            string todayTimeLog = now.ToString("mm_HH_dd_MM_yyyy");
-            string nameFileLog = @"Log/" + "Log" + todayTimeLog + ".txt";
-
-            using (StreamWriter sw = new StreamWriter(nameFileLog, false))
-            {
-                sw.WriteLineAsync(s);
             }
         }
         #endregion
@@ -194,7 +161,6 @@ namespace LauncherLes1.View
                     DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Распаковка файлов...");
                     using (ZipArchive zipFileServer = ZipFile.OpenRead(zipPath))
                     {
-
                         ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
                         int zipFilesCount = zipFileServer.Entries.Count;
                         ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Maximum = zipFilesCount);
@@ -258,7 +224,7 @@ namespace LauncherLes1.View
             }
             catch (Exception e)
             {
-                LoggingProcess("EXCEPTION E: " + e.Message.ToString());
+                Loges.LoggingProcess("EXCEPTION E: " + e.Message.ToString());
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "State task: " + e.Message.ToString());
             }
         }
@@ -285,7 +251,7 @@ namespace LauncherLes1.View
                 }
                 catch (Exception ex)
                 {
-                    LoggingProcess("EXCEPTION" + ex.Message.ToString());
+                    Loges.LoggingProcess("EXCEPTION" + ex.Message.ToString());
                 }
             }
             if (LaunchGameButton.Content.ToString() == "Отмена") {
@@ -304,36 +270,7 @@ namespace LauncherLes1.View
 
         #region ProgresBarDownloadGame
         private void ProgressMessageHandler_HttpReceiveProgress(object sender, HttpProgressEventArgs e)
-        {
-            string message;
-
-            switch (Properties.Settings.Default.outputType) {
-                case 0:
-                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Осталось: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) + " Скорость скачивание: " + Properties.Settings.Default.targetSpeedInKb + "bytes";
-                    break;
-                case 1:
-                    message = "Процесс установки: " + e.ProgressPercentage + "%";
-                    break;
-                case 2:
-                    message = "Процесс установки: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value);
-                    break;
-                default:
-                    message = "Процесс установки: " + e.ProgressPercentage + "%" + " Осталось: " + BytesToString(e.BytesTransferred) + "/" + BytesToString(e.TotalBytes.Value) + "Скорость скачивание: " + Properties.Settings.Default.targetSpeedInKb + "bytes";
-                    break;
-            }
-            DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = message);
-            ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = e.ProgressPercentage);
-        }
-        #endregion
-
-        #region BytesConvertToString
-        private static string BytesToString(long byteCount) {
-            string[] suf = { "B", "KB", "MB", "GB"};
-            long bytes = Math.Abs(byteCount);
-            int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
-            double num = Math.Round(bytes / Math.Pow(1024, place), 1);
-            return (Math.Sign(bytes) * num).ToString() + suf[place];
-        }
+            => ProgressMessage.ProgressMessageHandler(sender, e, DownloadAppState, ProgressBarExtractFile);
         #endregion
 
         #region Menu
@@ -362,7 +299,7 @@ namespace LauncherLes1.View
                         Process.Start(new ProcessStartInfo
                         {
                             FileName = "explorer.exe",
-                            Arguments = $@"/{name}",
+                            Arguments = $@"{name}",
                             UseShellExecute = true
                         });
                     }

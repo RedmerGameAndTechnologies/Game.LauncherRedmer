@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using LauncherLes1.View;
 using LauncherLes1.View.Pages;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -20,9 +21,7 @@ namespace LauncherLes1.ViewModel
         }
 
         public MainViewModel()
-        {
-            CurPage = HomePage;
-        }
+            => CurPage = HomePage;
 
         #region Переход страниц
         public ICommand OpenDefenderRatPage
@@ -32,6 +31,15 @@ namespace LauncherLes1.ViewModel
                 return new RelayCommand(() => CurPage = DefenderRat);
             }
         }
+
+        public ICommand openHomePage
+        {
+            get
+            {
+                return new RelayCommand(() => CurPage = HomePage);
+            }
+        }
+
         public ICommand openSettingsPage
         {
             get
@@ -40,11 +48,11 @@ namespace LauncherLes1.ViewModel
             }
         }
 
-        public ICommand openHomePage
+        public ICommand OpenDiscord
         {
             get
             {
-                return new RelayCommand(() => CurPage = HomePage);
+                return new RelayCommand(() => Process.Start(new ProcessStartInfo("https://discord.gg/efEFJfEcXH") { UseShellExecute = true }));
             }
         }
         #endregion

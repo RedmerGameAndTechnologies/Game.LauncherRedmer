@@ -22,8 +22,6 @@ namespace LauncherLes1.View.Pages
         }
 
         private void Button_Click_Repeat(object sender, RoutedEventArgs e)
-        {
-            Internet.connect();
-        }
+            => Internet.connect();
     }
 }
