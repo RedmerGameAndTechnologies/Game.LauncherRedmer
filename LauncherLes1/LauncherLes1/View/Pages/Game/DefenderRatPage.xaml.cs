@@ -10,16 +10,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using LauncherLes1.View.Resources.Script;
-using Newtonsoft.Json;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace LauncherLes1.View
 {
     public partial class OpenDefenderRatPage : Page
     {
         private readonly static string name = "DefenderRat";
-        private string UrlDownloadGame;
-        private readonly string updateJSONURLGAME = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
+        private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
         private readonly string appGamePath = $@"{name}/";
@@ -42,7 +39,7 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI.Update(BackgroundUIFunction, 0,0,2);
-            _ = UpdateContent.Main(updateJSONURLGAME, versionGame, UrlDownloadGame, background);
+            _ = UpdateContent.Main(urlJSON, versionGame, background);
         }
 
         #region BACKGROUNDFUNC
@@ -109,7 +106,7 @@ namespace LauncherLes1.View
                 CancellationToken cancellationToken = cancelTokenSource.Token;
                 Task downloadFileHTTP = Task.Run(async () =>
                 {
-                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage() { Method = HttpMethod.Get, RequestUri = new Uri(UrlDownloadGame) };
+                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage() { Method = HttpMethod.Get, RequestUri = new Uri(UpdateContent.urlDownload) };
                     ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler() { AllowAutoRedirect = true });
                     httpClient = new HttpClient(progressMessageHandler) { Timeout = Timeout.InfiniteTimeSpan };
                     stopWatch.Start();

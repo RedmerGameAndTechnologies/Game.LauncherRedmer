@@ -1,15 +1,10 @@
-﻿using CheckConnectInternet;
-using LauncherLes1.View.Resources.Script;
-using LauncherLes1.View.Windows;
-using System;
-using System.Text.Json;
-using System.Net.Http;
+﻿using System;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
-using System.Net.Http.Headers;
+using CheckConnectInternet;
+using LauncherLes1.View.Resources.Script;
+using LauncherLes1.View.Windows;
 
 namespace LauncherLes1.View.Pages
 {
