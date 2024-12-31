@@ -1,6 +1,4 @@
-﻿using LauncherLes1.View.Resources.Script;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -11,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using LauncherLes1.View.Resources.Script;
+using Newtonsoft.Json;
 
 namespace LauncherLes1.View
 {
@@ -18,7 +18,7 @@ namespace LauncherLes1.View
     {
         private readonly static string name = "DefenderRat";
         private readonly string UrlDownloadGame = "https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/EWSdZyEUQgtjVA";
-        private static readonly string updateJSONURL = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
+        private static readonly string updateJSONURLGAME = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
         private readonly string appGamePath = $@"{name}/";
@@ -41,29 +41,27 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI.Update(BackgroundUIFunction, 0,0,2);
+            Task task = Main();
         }
 
-        #region ReadJsonFile
-        public void ReadJsonFile() {
-            static async Task Main(string[] args)
+        private async Task Main()
+        {
+            using HttpClient client = new HttpClient();
+            try
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    try
-                    {
-                        string json = await client.GetStringAsync(updateJSONURL);
-                        JObject data = JObject.Parse(json);
-
-                        string version = data["version"].ToString();
-                    }
-                    catch (HttpRequestException e) when (e.Message.Contains("404"))
-                    {
-                        Console.WriteLine("Ошибка: " + e.Message);
-                    }
-                }
+                string json = await client.GetStringAsync(updateJSONURLGAME);
+                ReadJsonFileClass myData = JsonConvert.DeserializeObject<ReadJsonFileClass>(json);
+                versionGame.Content = myData.version;
+            }
+            catch (HttpRequestException e)
+            {
+                MessageBox.Show($"Файл не найден: {e.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (WebException e)
+            {
+                MessageBox.Show("505", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        #endregion
 
         #region BACKGROUNDFUNC
         public void BackgroundUIFunction(object sender, EventArgs ea)

@@ -11,6 +11,7 @@
     <PackageVersion Include="Fody" Version="6.9.1" />
     <PackageVersion Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
     <PackageVersion Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.AspNet.WebPages" Version="3.3.0" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0" />

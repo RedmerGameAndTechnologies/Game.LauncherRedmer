@@ -2,10 +2,14 @@
 using LauncherLes1.View.Resources.Script;
 using LauncherLes1.View.Windows;
 using System;
+using System.Text.Json;
+using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Net.Http.Headers;
 
 namespace LauncherLes1.View.Pages
 {
@@ -15,7 +19,6 @@ namespace LauncherLes1.View.Pages
 
         string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-        private DispatcherTimer dispatcherTimer;
         Window ConfirmUpdate;
 
         private int intArgumentsSpeedDownload;
@@ -23,19 +26,11 @@ namespace LauncherLes1.View.Pages
         public SettingsPage()
         {
             InitializeComponent();
-            UpdateUI();
+            UpdateUI.Update(BackgroundUIFunction, 0, 0, 2);
             StartCheck_CheckBoxAutoUpdateLauncher();
 
             TextShowDownloadSpeedLimit.Text = "Скорость скачивание (min: " + Properties.Settings.Default.targetSpeedInKb + " bytes)";
             TextBoxArgumentsSpeedDownload.Text = Properties.Settings.Default.targetSpeedInKb.ToString();
-        }
-
-        private void UpdateUI()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(BackgroundUIFunction);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
-            dispatcherTimer.Start();
         }
 
         public async void BackgroundUIFunction(object sender, EventArgs ea)
