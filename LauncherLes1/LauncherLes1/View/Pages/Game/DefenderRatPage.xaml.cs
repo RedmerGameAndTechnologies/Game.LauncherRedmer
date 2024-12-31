@@ -11,14 +11,15 @@ using System.Windows;
 using System.Windows.Controls;
 using LauncherLes1.View.Resources.Script;
 using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace LauncherLes1.View
 {
     public partial class OpenDefenderRatPage : Page
     {
         private readonly static string name = "DefenderRat";
-        private readonly string UrlDownloadGame = "https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/EWSdZyEUQgtjVA";
-        private static readonly string updateJSONURLGAME = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
+        private string UrlDownloadGame;
+        private readonly string updateJSONURLGAME = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
         private readonly string appGamePath = $@"{name}/";
@@ -41,26 +42,7 @@ namespace LauncherLes1.View
 
             InitializeComponent();
             UpdateUI.Update(BackgroundUIFunction, 0,0,2);
-            Task task = Main();
-        }
-
-        private async Task Main()
-        {
-            using HttpClient client = new HttpClient();
-            try
-            {
-                string json = await client.GetStringAsync(updateJSONURLGAME);
-                ReadJsonFileClass myData = JsonConvert.DeserializeObject<ReadJsonFileClass>(json);
-                versionGame.Content = myData.version;
-            }
-            catch (HttpRequestException e)
-            {
-                MessageBox.Show($"Файл не найден: {e.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (WebException e)
-            {
-                MessageBox.Show("505", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _ = UpdateContent.Main(updateJSONURLGAME, versionGame, UrlDownloadGame, background);
         }
 
         #region BACKGROUNDFUNC
