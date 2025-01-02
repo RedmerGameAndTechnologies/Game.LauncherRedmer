@@ -18,7 +18,7 @@ namespace LauncherLes1.View.Resources.Script
 
         private static CancellationTokenSource cancelTokenSource;
 
-        public static void ServerDownloadChacheGameAsync(string name, string UrlDownloadGame, string zipPath, string appTemlPath, string appGamePath, string ArgumentsAppString, bool isFileDownloadingNow, bool isStartUnzipUpdateFileApp, ProgressBar ProgressBarExtractFile, Button LaunchGameButton, TextBox DownloadAppState, Process processApp, int? idProcessApp)
+        public static void ServerDownloadChacheGameAsync(string name, string zipPath, string appTemlPath, string appGamePath, string ArgumentsAppString, bool isFileDownloadingNow, bool isStartUnzipUpdateFileApp, ProgressBar ProgressBarExtractFile, Button LaunchGameButton, TextBlock DownloadAppState, Process processApp, int? idProcessApp)
         {
             isFileDownloadingNow = true;
             if (!string.IsNullOrEmpty(zipPath) && File.Exists(zipPath))
@@ -35,7 +35,7 @@ namespace LauncherLes1.View.Resources.Script
                 CancellationToken cancellationToken = cancelTokenSource.Token;
                 Task downloadFileHTTP = Task.Run(async () =>
                 {
-                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage() { Method = HttpMethod.Get, RequestUri = new Uri(UrlDownloadGame) };
+                    HttpRequestMessage httpRequestMessage = new HttpRequestMessage() { Method = HttpMethod.Get, RequestUri = new Uri(UpdateContent.urlDownload) };
                     ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler() { AllowAutoRedirect = true });
                     httpClient = new HttpClient(progressMessageHandler) { Timeout = Timeout.InfiniteTimeSpan };
                     stopWatch.Start();

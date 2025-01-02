@@ -1,5 +1,4 @@
 ﻿using IWshRuntimeLibrary;
-using System;
 using System.Diagnostics;
 
 namespace LauncherLes1.View.Resources.Script
@@ -14,8 +13,6 @@ namespace LauncherLes1.View.Resources.Script
             WshShell shell = new WshShell();
             string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + $@"\{name}.lnk";
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
-            shortcut.Description = "LauncherRedmer my games";
-            shortcut.Hotkey = "Ctrl+Shift+N";
 /*            if (!string.IsNullOrEmpty(serchicon))
             {
                 shortcut.IconLocation = serchicon;

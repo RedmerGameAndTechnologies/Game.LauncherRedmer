@@ -15,11 +15,7 @@ namespace LauncherLes1.View
 {
     public partial class OpenDefenderRatPage : Page
     {
-        private readonly static string name = "DefenderRat";
         private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
-        private readonly string zipPath = @".\ChacheDownloadGame.zip";
-        private readonly string appTemlPath = "tempDirectoryUnzip";
-        private readonly string appGamePath = $@"{name}/";
         private int? idProcessApp = null;
         private bool appIsStarting = false;
         private bool isStartUnzipUpdateFileApp = true;
@@ -64,7 +60,7 @@ namespace LauncherLes1.View
             }
             else
             {
-                if (!Directory.Exists(appGamePath))
+                if (!Directory.Exists(Test.appGamePath))
                 {
                     LaunchGameButton.IsEnabled = true;
                     LaunchGameButton.Content = "Установить";
@@ -92,9 +88,9 @@ namespace LauncherLes1.View
         public void ServerDownloadChacheGameAsync()
         {
             isFileDownloadingNow = true;
-            if (!string.IsNullOrEmpty(zipPath) && File.Exists(zipPath))
+            if (!string.IsNullOrEmpty(Test.zipPath) && File.Exists(Test.zipPath))
             {
-                File.Delete(zipPath);
+                File.Delete(Test.zipPath);
             }
             try
             {
@@ -112,7 +108,7 @@ namespace LauncherLes1.View
                     stopWatch.Start();
                     progressMessageHandler.HttpReceiveProgress += ProgressMessageHandler_HttpReceiveProgress;
                     Stream streamFileServer = await httpClient.GetStreamAsync(httpRequestMessage.RequestUri);
-                    Stream fileStreamServer = new FileStream(zipPath, FileMode.OpenOrCreate, FileAccess.Write);
+                    Stream fileStreamServer = new FileStream(Test.zipPath, FileMode.OpenOrCreate, FileAccess.Write);
                     try
                     {
                         await streamFileServer.CopyToAsync(fileStreamServer, Properties.Settings.Default.targetSpeedInKb, cancellationToken);
@@ -124,7 +120,7 @@ namespace LauncherLes1.View
                     catch (Exception e)
                     {
                         DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "State: " + e.Message.ToString());
-                        LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled = true);
+                        LaunchGameButton.Dispatcher.Invoke(() => LaunchGameButton.IsEnabled);
                         cancelTokenSource.Dispose();
                         streamFileServer.Dispose();
                         fileStreamServer.Dispose();
@@ -134,47 +130,47 @@ namespace LauncherLes1.View
                 downloadFileHTTP.ContinueWith(obj =>
                 {
                     DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Распаковка файлов...");
-                    using (ZipArchive zipFileServer = ZipFile.OpenRead(zipPath))
+                    using (ZipArchive zipFileServer = ZipFile.OpenRead(Test.zipPath))
                     {
                         ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = 0);
                         int zipFilesCount = zipFileServer.Entries.Count;
                         ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Maximum = zipFilesCount);
                         foreach (var zip in zipFileServer.Entries)
                         {
-                            if (isStartUnzipUpdateFileApp == true)
+                            if (isStartUnzipUpdateFileApp)
                             {
-                                zip.Archive.ExtractToDirectory(appTemlPath);
+                                zip.Archive.ExtractToDirectory(Test.appTemlPath);
                                 isStartUnzipUpdateFileApp = false;
                                 break;
                             }
                         }
                         ProgressBarExtractFile.Dispatcher.Invoke(() => ProgressBarExtractFile.Value = zipFilesCount);
                     }
-                    File.Delete(zipPath);
-                    foreach (string dgfse in Directory.GetFileSystemEntries(appTemlPath + $"/{name}"))
+                    File.Delete(Test.zipPath);
+                    foreach (string dgfse in Directory.GetFileSystemEntries(Test.appTemlPath + $"/{UpdateContent.name}"))
                     {
                         FileAttributes attributes = File.GetAttributes(dgfse);
                         DirectoryInfo dirInf = new DirectoryInfo(dgfse);
                         FileInfo fileInf = new FileInfo(dgfse);
-                        if (!Directory.Exists(appGamePath))
+                        if (!Directory.Exists(Test.appGamePath))
                         {
-                            Directory.CreateDirectory(appGamePath);
+                            Directory.CreateDirectory(Test.appGamePath);
                         }
                         if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
                         {
-                            if (Directory.Exists(appGamePath + dirInf.Name))
+                            if (Directory.Exists(Test.appGamePath + dirInf.Name))
                             {
-                                Directory.Delete(appGamePath + dirInf.Name, true);
+                                Directory.Delete(Test.appGamePath + dirInf.Name, true);
                             }
-                            dirInf.MoveTo(appGamePath + dirInf.Name);
+                            dirInf.MoveTo(Test.appGamePath + dirInf.Name);
                         }
                         else if ((attributes & FileAttributes.Directory) != FileAttributes.Directory)
                         {
-                            if (File.Exists(appGamePath + fileInf.Name))
+                            if (File.Exists(Test.appGamePath + fileInf.Name))
                             {
-                                File.Delete(appGamePath + fileInf.Name);
+                                File.Delete(Test.appGamePath + fileInf.Name);
                             }
-                            fileInf.MoveTo(appGamePath + fileInf.Name);
+                            fileInf.MoveTo(Test.appGamePath + fileInf.Name);
                         }
                     }
                     DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "Статус: " + "игра установлена");
@@ -185,7 +181,7 @@ namespace LauncherLes1.View
                         {
                             processApp = new Process();
                             processApp.StartInfo.UseShellExecute = false;
-                            processApp.StartInfo.FileName = appGamePath + @".\Defender Rat.exe";
+                            processApp.StartInfo.FileName = Test.appGamePath + @".\Defender Rat.exe";
                             processApp.StartInfo.Arguments = ArgumentsAppString;
                             processApp.Start();
                             idProcessApp = processApp.Id;
@@ -208,18 +204,15 @@ namespace LauncherLes1.View
         #region ButtonLaunchGame
         private void ButtonLaunchGame(object sender, RoutedEventArgs e)
         {
-            if (LaunchGameButton.Content.ToString() == "Установить") {
-                if (!Directory.Exists(appGamePath))
-                {
+            if (LaunchGameButton.Content.ToString() == "Установить")
+                if (!Directory.Exists(Test.appGamePath))
                     ServerDownloadChacheGameAsync();
-                }
-            }
             if (LaunchGameButton.Content.ToString() == "Играть") {
                 try
                 {
                     processApp = new Process();
                     processApp.StartInfo.UseShellExecute = false;
-                    processApp.StartInfo.FileName = appGamePath + @".\Defender Rat.exe";
+                    processApp.StartInfo.FileName = Test.appGamePath + @".\Defender Rat.exe";
                     processApp.StartInfo.Arguments = ArgumentsAppString;
                     processApp.Start();
                     idProcessApp = processApp.Id;
@@ -274,31 +267,25 @@ namespace LauncherLes1.View
                         Process.Start(new ProcessStartInfo
                         {
                             FileName = "explorer.exe",
-                            Arguments = $@"{name}",
+                            Arguments = UpdateContent.name,
                             UseShellExecute = true
                         });
                     }
                     catch (Exception ex) {
+                        Loges.LoggingProcess("EXCEPTION: " + ex.Message.ToString());
                         MessageBox.Show($"Не известная ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 1:
-                    CreateIconClass.CreateShortcut(name);
+                    CreateIconClass.CreateShortcut(UpdateContent.name);
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;
                 case 2:
-                    if (Directory.Exists(appGamePath) == true && appIsStarting == false)
+                    if (Directory.Exists(Test.appGamePath) && !appIsStarting)
                     {
-                        try
-                        {
-                            Directory.Delete(appGamePath, recursive: true);
-                            DownloadAppState.Text = "Статус: " + "Игра удалена";
-                        }
-                        catch (Exception ex) {
-                            MessageBox.Show($"Ошибка, у вас игра запущена: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-
+                        Directory.Delete(Test.appGamePath, recursive: true);
+                        DownloadAppState.Text = "Статус: Игра удалена";
                     }
                     ComboBoxChooseGameInLauncher.SelectedIndex = -1;
                     break;

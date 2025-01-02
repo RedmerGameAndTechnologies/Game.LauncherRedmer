@@ -9,6 +9,7 @@ namespace LauncherLes1.View.Resources.Script
 {
     public class UpdateContent {
         public static string urlDownload;
+        public static string name;
 
         public static async Task Main(string urlJSON, Label version, Image urlBackground)
         {
@@ -18,12 +19,15 @@ namespace LauncherLes1.View.Resources.Script
 
             version.Content = "Версия: " + data.version;
             urlDownload = data.download;
+            name = data.name;
             urlBackground.Source = new BitmapImage(new Uri(data.backround));
         }
     }
 
     public class ReadJsonFileClass
     {
+        [JsonProperty("name")]
+        public string name { get; set; }
         [JsonProperty("version")]
         public string version { get; set; }
 

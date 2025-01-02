@@ -84,16 +84,10 @@
     <Resource Include="View\Resources\IconsGame\Png\Defender Rat.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\Background\Png\Default.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="View\Resources\Icons\Png\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\IconsGame\Png\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Resources\Background\Png\Defender Rat.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\Icons\Jpg\sad_smiley.jpg" />
