@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace LauncherLes1.View.Resources.Script
 {
-    class DownloadFileGame
+/*    class DownloadFileGame
     {
         private static Stopwatch stopWatch = new Stopwatch();
 
@@ -132,5 +132,5 @@ namespace LauncherLes1.View.Resources.Script
                 DownloadAppState.Dispatcher.Invoke(() => DownloadAppState.Text = "State task: " + e.Message.ToString());
             }
         }
-    }
+    }*/
 }

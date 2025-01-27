@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using CheckConnectInternet;
@@ -11,8 +10,6 @@ namespace LauncherLes1.View.Pages
     public partial class SettingsPage : Page
     {
         public static bool isActiveUpdateLauncherWindow { get; set; } = false;
-
-        string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         Window ConfirmUpdate;
 
@@ -35,16 +32,16 @@ namespace LauncherLes1.View.Pages
                 string readver = await HttpsClientClass.HttpResponse("https://pastebin.com/raw/dem4T7Xp");
 
                 readver = readver.Replace(".", ".");
-                curver = curver.Replace(".", ".");
+                Arguments.curver = Arguments.curver.Replace(".", ".");
 
-                if (curver.CompareTo(readver) < 0)
+                if (Arguments.curver.CompareTo(readver) < 0)
                 {
                     DownloadUpdate.Visibility = Visibility.Visible;
-                    currentVersion.Content = "Моя версия: " + curver + " \nНовая версия: " + readver;
+                    currentVersion.Content = "Моя версия: " + Arguments.curver + " \nНовая версия: " + readver;
                 }
                 else
                 {
-                    currentVersion.Content = "Моя версия: " + curver;
+                    currentVersion.Content = "Моя версия: " + Arguments.curver;
                     DownloadUpdate.Visibility = Visibility.Hidden;
                 }
             }
@@ -58,19 +55,15 @@ namespace LauncherLes1.View.Pages
 
         private void StartCheck_CheckBoxAutoUpdateLauncher()
         {
-            if (Properties.Settings.Default.isAutoUpdateLauncher == true) {
+            if (Properties.Settings.Default.isAutoUpdateLauncher == true)
                 CheckBox.IsChecked = true;
-            }
-            else {
+            else
                 CheckBox.IsChecked = false;
-            }
 
-            if (Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt == true) {
+            if (Properties.Settings.Default.isRunTheGameImmediatelyAfterInstallingIt == true)
                 CheckBoxInstallNow.IsChecked = true;
-            }
-            else {
+            else
                 CheckBoxInstallNow.IsChecked = false;
-            }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -112,7 +105,8 @@ namespace LauncherLes1.View.Pages
 
         private void ComboBoxChooseSettings_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxChooseGameInLauncherHandle) ComboBoxChooseGameInLauncher_Handle();
+            if (ComboBoxChooseGameInLauncherHandle) 
+                ComboBoxChooseGameInLauncher_Handle();
             ComboBoxChooseGameInLauncherHandle = true;
         }
 

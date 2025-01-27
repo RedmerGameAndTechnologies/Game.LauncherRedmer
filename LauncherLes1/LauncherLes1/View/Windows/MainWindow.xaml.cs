@@ -73,23 +73,15 @@ namespace LauncherLes1.View
         #endregion
 
         private void Home(object sender, RoutedEventArgs e)
-        {
-            SlideMenu.Visibility = Visibility.Hidden;
-        }
+            => SlideMenu.Visibility = Visibility.Hidden;
 
         private void Close(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+            => Close();
 
         private void Collapse(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+            => WindowState = WindowState.Minimized;
 
         private void TaskbarIcon_TrayLeftMouseDown(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Normal;
-        }
+            => WindowState = WindowState.Normal;
     }
 }

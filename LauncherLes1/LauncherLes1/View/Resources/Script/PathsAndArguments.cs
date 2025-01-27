@@ -1,18 +1,41 @@
-﻿namespace LauncherLes1.View.Resources.Script
+﻿using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+
+namespace LauncherLes1.View.Resources.Script
 {
     class Arguments
     {
-        public static int? idProcessApp = null;
-        public static bool appIsStarting = false;
-        public static bool isStartUnzipUpdateFileApp = true;
-        public static bool isFileDownloadingNow = false;
-        public static string ArgumentsAppString { get; set; }
+        #region Confirm Update
+        public static string execPath = Process.GetCurrentProcess().MainModule.FileName;
+        public static string workingDir = Path.GetDirectoryName(execPath);
+        public static string sourcePath = Path.Combine(workingDir, Path.GetFileName(execPath));
+        public static string exenames = Path.GetFileName(sourcePath);
+        #endregion
+
+        #region Settings
+        public static string curver = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        #endregion
     }
 
     class Paths
     {
-        public static readonly string zipPath = @".\ChacheDownloadGame.zip";
+        public string Name { get; set; }
+
+        #region Download Game
+        public readonly string zipPath;
+        public Paths(string name)
+        {
+            Name = name;
+            zipPath = $@".\ChacheDownloadGame_{Name}.zip";
+        }
         public static readonly string appTemlPath = "tempDirectoryUnzip";
-        public static readonly string appGamePath = $@"{UpdateContent.name}/";
+        #endregion
+
+        #region Confirm Update
+        public static readonly string zipPathUpdate = @".\UpdateLaucnher.zip";
+        public static readonly string exeLauncherUpdate = @".\NewLauncher.exe";
+        public static readonly string exetraPath = @".\";
+        #endregion
     }
 }

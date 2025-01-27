@@ -80,6 +80,12 @@
                             <ImageSource x:Key="Img">/View/Resources/IconsGame/Png/Defender Rat.png</ImageSource>
                         </Button.Resources>
                     </Button>
+                    <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding TheWorldOfQuantrianismPage}"
+                        Content="The World Of Quantrianism">
+                        <Button.Resources>
+                            <ImageSource x:Key="Img">/View/Resources/IconsGame/Png/Defender Rat.png</ImageSource>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
                 <ToggleButton Focusable="False" x:Name="OpenCloseSlideMenuBtn" Height="20" Width="20"
                           VerticalAlignment="Bottom" HorizontalAlignment="Left"

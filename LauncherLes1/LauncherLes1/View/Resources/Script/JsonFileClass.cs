@@ -8,10 +8,11 @@ using System.Windows.Controls;
 namespace LauncherLes1.View.Resources.Script
 {
     public class UpdateContent {
-        public static string urlDownload;
-        public static string name;
+        public string name;
+        public string urlDownload;
+        public string appGamePath;
 
-        public static async Task Main(string urlJSON, Label version, Image urlBackground)
+        public async Task Main(string urlJSON, Label version, Image urlBackground)
         {
             using HttpClient client = new HttpClient();
             string json = await client.GetStringAsync(urlJSON);
@@ -20,6 +21,7 @@ namespace LauncherLes1.View.Resources.Script
             version.Content = "Версия: " + data.version;
             urlDownload = data.download;
             name = data.name;
+            appGamePath = $@"{name}/";
             urlBackground.Source = new BitmapImage(new Uri(data.backround));
         }
     }
@@ -28,6 +30,7 @@ namespace LauncherLes1.View.Resources.Script
     {
         [JsonProperty("name")]
         public string name { get; set; }
+
         [JsonProperty("version")]
         public string version { get; set; }
 

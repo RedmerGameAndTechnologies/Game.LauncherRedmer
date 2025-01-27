@@ -11,6 +11,7 @@ namespace LauncherLes1.ViewModel
     {
         private Page HomePage = new HomePage();
         private Page DefenderRat = new OpenDefenderRatPage();
+        private Page TheWorldOfQuantrianism = new TheWorldOfQuantrianismPage();
         private Page Settings = new SettingsPage();
 
         private Page _CurPage;
@@ -29,6 +30,14 @@ namespace LauncherLes1.ViewModel
             get
             {
                 return new RelayCommand(() => CurPage = DefenderRat);
+            }
+        }
+
+        public ICommand TheWorldOfQuantrianismPage
+        {
+            get
+            {
+                return new RelayCommand(() => CurPage = TheWorldOfQuantrianism);
             }
         }
 

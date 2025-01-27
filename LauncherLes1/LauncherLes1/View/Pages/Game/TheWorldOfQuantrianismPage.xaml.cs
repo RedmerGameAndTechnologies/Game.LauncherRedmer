@@ -1,5 +1,4 @@
-﻿using LauncherLes1.View.Resources.Script;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -10,12 +9,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using LauncherLes1.View.Resources.Script;
 
 namespace LauncherLes1.View
 {
-    public partial class OpenDefenderRatPage : Page
+    public partial class TheWorldOfQuantrianismPage : Page
     {
-        private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
+        private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/TheWorldOfQuantrianism.json";
         private readonly string zipPath = @".\ChacheDownloadGame.zip";
         private readonly string appTemlPath = "tempDirectoryUnzip";
 
@@ -32,13 +32,13 @@ namespace LauncherLes1.View
         WebClient clientDownloadApp = new WebClient();
         HttpClient httpClient = new HttpClient();
 
-        public OpenDefenderRatPage()
+        public TheWorldOfQuantrianismPage()
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Loges.ExcepctionEventApp);
 
             InitializeComponent();
-            UpdateUI.Update(BackgroundUIFunction, 0, 0, 2);
+            UpdateUI.Update(BackgroundUIFunction, 0,0,2);
 
             Task task = updateContent.Main(urlJSON, versionGame, background);
         }
@@ -69,10 +69,10 @@ namespace LauncherLes1.View
                 {
                     LaunchGameButton.IsEnabled = true;
                     LaunchGameButton.Content = "Установить";
+
                     ComboBoxChooseGameInLauncher.IsEnabled = false;
                 }
-                else
-                {
+                else{
                     LaunchGameButton.Content = appIsStarting ? "Игра запущена" : "Играть";
                     LaunchGameButton.IsEnabled = !appIsStarting;
                 }
@@ -204,8 +204,7 @@ namespace LauncherLes1.View
             if (LaunchGameButton.Content.ToString() == "Установить")
                 if (!Directory.Exists(updateContent.appGamePath))
                     ServerDownloadChacheGameAsync();
-            if (LaunchGameButton.Content.ToString() == "Играть")
-            {
+            if (LaunchGameButton.Content.ToString() == "Играть") {
                 try
                 {
                     processApp = new Process();
@@ -220,8 +219,7 @@ namespace LauncherLes1.View
                     Loges.LoggingProcess("EXCEPTION" + ex.Message.ToString());
                 }
             }
-            if (LaunchGameButton.Content.ToString() == "Отмена")
-            {
+            if (LaunchGameButton.Content.ToString() == "Отмена") {
                 clientDownloadApp.CancelAsync();
                 try
                 {
@@ -270,8 +268,7 @@ namespace LauncherLes1.View
                             UseShellExecute = true
                         });
                     }
-                    catch (Exception ex)
-                    {
+                    catch (Exception ex) {
                         Loges.LoggingProcess("EXCEPTION: " + ex.Message.ToString());
                         MessageBox.Show($"Не известная ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
