@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,10 +13,14 @@ namespace LauncherLes1.View.Windows
 {
     public partial class ConfirmUpdateWindow : Window
     {
+        private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/VersionLauncher.json";
+
         private UpdateContentLauncherUpdate updateContentLauncherUpdate = new UpdateContentLauncherUpdate();
 
-        public ConfirmUpdateWindow()
-            => InitializeComponent();
+        public ConfirmUpdateWindow() {
+            InitializeComponent();
+            Task task = updateContentLauncherUpdate.Main(urlJSON);
+        }
 
         private void WindowMove(object sender, MouseButtonEventArgs e)
         {   
