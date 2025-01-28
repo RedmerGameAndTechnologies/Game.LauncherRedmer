@@ -12,6 +12,8 @@ namespace LauncherLes1.View.Windows
 {
     public partial class ConfirmUpdateWindow : Window
     {
+        private UpdateContentLauncherUpdate updateContentLauncherUpdate = new UpdateContentLauncherUpdate();
+
         public ConfirmUpdateWindow()
             => InitializeComponent();
 
@@ -36,7 +38,7 @@ namespace LauncherLes1.View.Windows
                         File.Delete(Paths.exeLauncherUpdate);
                     try
                     {
-                        wc.DownloadFile("https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/nG-fxSX_twOw5A", "UpdateLaucnher.zip");
+                        wc.DownloadFile(updateContentLauncherUpdate.fileDownloadLink, "UpdateLaucnher.zip");
                         ZipFile.ExtractToDirectory(Paths.zipPathUpdate, Paths.exetraPath);
                         File.Delete(Paths.zipPathUpdate);
                     }

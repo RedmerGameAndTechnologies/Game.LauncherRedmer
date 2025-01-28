@@ -26,6 +26,22 @@ namespace LauncherLes1.View.Resources.Script
         }
     }
 
+    public class UpdateContentLauncherUpdate
+    {
+        public string version;
+        public string fileDownloadLink;
+
+        public async Task Main(string urlJSON)
+        {
+            using HttpClient client = new HttpClient();
+            string json = await client.GetStringAsync(urlJSON);
+            ReadJsonFileClassUpdateLauncher data = JsonConvert.DeserializeObject<ReadJsonFileClassUpdateLauncher>(json);
+
+            fileDownloadLink = data.fileDownloadLink;
+            version = data.version;
+        }
+    }
+
     public class ReadJsonFileClass
     {
         [JsonProperty("name")]
@@ -39,5 +55,14 @@ namespace LauncherLes1.View.Resources.Script
 
         [JsonProperty("backround")]
         public string backround { get; set; }
+    }
+
+    public class ReadJsonFileClassUpdateLauncher
+    {
+        [JsonProperty("version")]
+        public string version { get; set; }
+
+        [JsonProperty("fileDownloadLink")]
+        public string fileDownloadLink { get; set; }
     }
 }

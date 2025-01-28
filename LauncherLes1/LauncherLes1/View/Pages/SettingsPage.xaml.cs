@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using CheckConnectInternet;
@@ -9,11 +10,15 @@ namespace LauncherLes1.View.Pages
 {
     public partial class SettingsPage : Page
     {
+        private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/VersionLauncher.json";
+
         public static bool isActiveUpdateLauncherWindow { get; set; } = false;
 
         Window ConfirmUpdate;
 
         private int intArgumentsSpeedDownload;
+
+        private UpdateContentLauncherUpdate updateContentLauncherUpdate = new UpdateContentLauncherUpdate();
 
         public SettingsPage()
         {
@@ -23,13 +28,15 @@ namespace LauncherLes1.View.Pages
 
             TextShowDownloadSpeedLimit.Text = "Скорость скачивание (min: " + Properties.Settings.Default.targetSpeedInKb + " bytes)";
             TextBoxArgumentsSpeedDownload.Text = Properties.Settings.Default.targetSpeedInKb.ToString();
+
+            Task task = updateContentLauncherUpdate.Main(urlJSON);
         }
 
-        public async void BackgroundUIFunction(object sender, EventArgs ea)
+        public void BackgroundUIFunction(object sender, EventArgs ea)
         {
             if (Internet.connect())
             {
-                string readver = await HttpsClientClass.HttpResponse("https://pastebin.com/raw/dem4T7Xp");
+                string readver = updateContentLauncherUpdate.version;
 
                 readver = readver.Replace(".", ".");
                 Arguments.curver = Arguments.curver.Replace(".", ".");
@@ -46,7 +53,8 @@ namespace LauncherLes1.View.Pages
                 }
             }
 
-            if (int.TryParse(TextBoxArgumentsSpeedDownload.Text, out intArgumentsSpeedDownload) && intArgumentsSpeedDownload >= 1) {
+            if (int.TryParse(TextBoxArgumentsSpeedDownload.Text, out intArgumentsSpeedDownload) && intArgumentsSpeedDownload >= 1)
+            {
                 Properties.Settings.Default.targetSpeedInKb = intArgumentsSpeedDownload;
                 TextShowDownloadSpeedLimit.Text = "Download speed limit (min: " + Properties.Settings.Default.targetSpeedInKb + " bytes)";
             }
