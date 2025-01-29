@@ -16,8 +16,6 @@ namespace LauncherLes1.View
     public partial class OpenDefenderRatPage : Page
     {
         private readonly string urlJSON = "https://raw.githubusercontent.com/RedmerGameAndTechnologies/JsonLauncher/refs/heads/main/DefenderRat.json";
-        private readonly string zipPath = @".\ChacheDownloadGame.zip";
-        private readonly string appTemlPath = "tempDirectoryUnzip";
 
         private int? idProcessApp = null;
         private bool appIsStarting = false;
@@ -84,6 +82,9 @@ namespace LauncherLes1.View
         CancellationTokenSource cancelTokenSource;
         public void ServerDownloadChacheGameAsync()
         {
+            string zipPath = Paths.GetZipPath(updateContent.name);
+            string appTemlPath = Paths.appTemlPath;
+
             isFileDownloadingNow = true;
             if (!string.IsNullOrEmpty(zipPath) && File.Exists(zipPath))
             {

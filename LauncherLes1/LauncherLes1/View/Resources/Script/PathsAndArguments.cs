@@ -27,7 +27,11 @@ namespace LauncherLes1.View.Resources.Script
         public Paths(string name)
         {
             Name = name;
-            zipPath = $@".\ChacheDownloadGame_{Name}.zip";
+            zipPath = $@".\ChacheDownloadGame_{name}.zip";
+        }
+        public static string GetZipPath(string name)
+        {
+            return $@".\ChacheDownloadGame_{name}.zip";
         }
         public static readonly string appTemlPath = "tempDirectoryUnzip";
         #endregion
